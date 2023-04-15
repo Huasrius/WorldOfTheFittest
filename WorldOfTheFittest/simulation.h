@@ -51,7 +51,7 @@ public:
 private:
     void fillVectors(void);
     Living* worldPlayground[EDGE_LENGTH_GAME_BOARD+2][EDGE_LENGTH_GAME_BOARD+2];
-    Living **neighbor[NEIGHBORHOOD_SIZE];
+    Living** neighbor[NEIGHBORHOOD_SIZE];
     struct vec_{
         vector<Living**> grass;
         vector<Living**> rabbit;

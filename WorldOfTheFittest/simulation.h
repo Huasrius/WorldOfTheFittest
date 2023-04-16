@@ -47,10 +47,9 @@ public:
     Simulation();
     void display(void) const;
     void oneCycle(void);
-
+    Living* worldPlayground[EDGE_LENGTH_GAME_BOARD + 2][EDGE_LENGTH_GAME_BOARD + 2];
 private:
     void fillVectors(void);
-    Living* worldPlayground[EDGE_LENGTH_GAME_BOARD+2][EDGE_LENGTH_GAME_BOARD+2];
     Living** neighbor[NEIGHBORHOOD_SIZE];
     struct vec_{
         vector<Living**> grass;

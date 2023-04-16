@@ -140,6 +140,7 @@
     <ClCompile Include="grass.cpp" />
     <ClCompile Include="living.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="rabbit.cpp" />
     <ClCompile Include="simulation.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="fox.h" />
     <ClInclude Include="grass.h" />
     <ClInclude Include="living.h" />
+    <ClInclude Include="OpenGL.h" />
     <ClInclude Include="properties.h" />
     <ClInclude Include="rabbit.h" />
     <ClInclude Include="simulation.h" />

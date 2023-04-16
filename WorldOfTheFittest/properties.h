@@ -25,14 +25,17 @@
 
 #ifndef PROPERTIES_H
 #define PROPERTIES_H
-
 #include <cstddef>
 #include <iostream>
 #include <stdio.h>
 #include <time.h>
 #include <vector>
 #include <stdlib.h>
-#include <windows.h>  // For MS Windows
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 using namespace std;
 

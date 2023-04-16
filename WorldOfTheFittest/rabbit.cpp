@@ -74,7 +74,7 @@ void Rabbit::action(Living **neighborhood[]){
         if(*neighborhood[i] != nullptr) {
             // If it has grass in the neigborhood and the rabbit is still hungry, he eats grass
             // The Grass growLevel is decremented
-            if((*neighborhood[i])->who() == GRASS && repletionLevel <= MAX_REPLETION_LEVEL_RABBIT) {
+            if((*neighborhood[i])->who() == GRASS && repletionLevel <= RABBIT_MAX_REPLETION_LEVEL) {
                 static_cast<Grass*>(*neighborhood[i])->growLevel--;
                 repletionLevel++;
                 // If the growLevel is 0 the grass is replaced by an empty class
@@ -87,8 +87,8 @@ void Rabbit::action(Living **neighborhood[]){
             // If the rabbit genders is female and it reached sexual maturity and it has Male rabbits with sexual maturity
             // in the neigborhood, the rabbit gets pregnant.
             if((*neighborhood[i])->who() == RABBIT && static_cast<Animal*>(*neighborhood[i])->getGender() == MALE
-                    && gender == FEMALE && static_cast<Animal*>(*neighborhood[i])->getAge() >= SEXUAL_MATURITY_RABBIT
-                    && age >= SEXUAL_MATURITY_RABBIT) {
+                    && gender == FEMALE && static_cast<Animal*>(*neighborhood[i])->getAge() >= RABBIT_SEXUAL_MATURITY
+                    && age >= RABBIT_SEXUAL_MATURITY) {
                 isPregnant = true;
             }
         }

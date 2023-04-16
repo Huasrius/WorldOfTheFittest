@@ -34,17 +34,17 @@ Simulation::Simulation() {
     srand(static_cast<unsigned>(clock()));
 
     //set the limit for WorldPlayground
-    for (unsigned ix = 0; ix < EDGE_LENGTH_GAME_BOARD_X + 2; ix++){
+    for (unsigned ix = 0; ix < BOARD_LENGTH_X + 2; ix++){
         worldPlayground[ix][0] = nullptr;
-        worldPlayground[ix][EDGE_LENGTH_GAME_BOARD_X + 1] = nullptr;
+        worldPlayground[ix][BOARD_LENGTH_X + 1] = nullptr;
     }
-    for (unsigned iy = 1; iy < EDGE_LENGTH_GAME_BOARD_Y + 1; iy++){
+    for (unsigned iy = 1; iy < BOARD_LENGTH_Y + 1; iy++){
         worldPlayground[0][iy] = nullptr;
-        worldPlayground[EDGE_LENGTH_GAME_BOARD_Y + 1][iy] = nullptr;
+        worldPlayground[BOARD_LENGTH_Y + 1][iy] = nullptr;
     }
     //fill the whole WorldPlayground with the Class Empty
-    for (unsigned ix = 1; ix <= EDGE_LENGTH_GAME_BOARD_X; ix++)
-        for (unsigned iy = 1; iy <= EDGE_LENGTH_GAME_BOARD_Y; iy++){
+    for (unsigned ix = 1; ix <= BOARD_LENGTH_X; ix++)
+        for (unsigned iy = 1; iy <= BOARD_LENGTH_Y; iy++){
             worldPlayground[ix][iy] = new Empty(ix,iy);
         }
     //fill randomly the WorldPlayground with the CLass Grass times GRASS_START_POPULATION
@@ -67,7 +67,7 @@ void Simulation::oneCycle(void){
         setNeighbors((*vec.fox[i])->location.x,(*vec.fox[i])->location.y);
         (*vec.fox[i])->action(neighbor);
         //  if the role dies, because of starvation or senility the place is replaced by an empty class
-        if(static_cast<Animal*>(*vec.fox[i])->getAge() == LIFESPAN_FOX || static_cast<Animal*>(*vec.fox[i])->getRepletionLevel() == 0) {
+        if(static_cast<Animal*>(*vec.fox[i])->getAge() == FOX_LIVESPAN || static_cast<Animal*>(*vec.fox[i])->getRepletionLevel() == 0) {
             Living* temp = worldPlayground[(*vec.fox[i])->location.x][(*vec.fox[i])->location.y];
             worldPlayground[(*vec.fox[i])->location.x][(*vec.fox[i])->location.y] = new Empty((*vec.fox[i])->location.x,(*vec.fox[i])->location.y);
             delete temp;
@@ -81,7 +81,7 @@ void Simulation::oneCycle(void){
             setNeighbors((*vec.rabbit[i])->location.x,(*vec.rabbit[i])->location.y);
             (*vec.rabbit[i])->action(neighbor);
             //  if the role dies, because of starvation or senility the place is replaced by an empty class
-            if(static_cast<Animal*>(*vec.rabbit[i])->getAge() == LIFESPAN_FOX || static_cast<Animal*>(*vec.rabbit[i])->getRepletionLevel() == 0) {
+            if(static_cast<Animal*>(*vec.rabbit[i])->getAge() == RABBIT_LIFESPAN || static_cast<Animal*>(*vec.rabbit[i])->getRepletionLevel() == 0) {
                 Living* temp = worldPlayground[(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y];
                 worldPlayground[(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y] = new Empty((*vec.rabbit[i])->location.x,(*vec.rabbit[i])->location.y);
                 delete temp;
@@ -143,8 +143,8 @@ void Simulation::setStart(Role role){
     //set a new grass, rabbit or fox at a random location and fill a vector for each role
     for(unsigned i = 0; i < startPopulation; i++){
         do{
-            x = 1 + rand()%EDGE_LENGTH_GAME_BOARD_X;
-            y = 1 + rand()%EDGE_LENGTH_GAME_BOARD_Y;
+            x = 1 + rand()%BOARD_LENGTH_X;
+            y = 1 + rand()%BOARD_LENGTH_Y;
         }while(EMPTY != worldPlayground[x][y]->who());
 
         switch(role){
@@ -153,11 +153,11 @@ void Simulation::setStart(Role role){
             vec.grass.push_back(&worldPlayground[x][y]);
             break;
         case RABBIT :
-            worldPlayground[x][y] = new Rabbit(x,y,rand()%LIFESPAN_RABBIT);
+            worldPlayground[x][y] = new Rabbit(x,y,rand()%RABBIT_LIFESPAN);
             vec.rabbit.push_back(&worldPlayground[x][y]);
             break;
         case FOX :
-            worldPlayground[x][y] = new Fox(x,y,rand()%LIFESPAN_RABBIT);
+            worldPlayground[x][y] = new Fox(x,y,rand()%RABBIT_LIFESPAN);
             vec.fox.push_back(&worldPlayground[x][y]);
             break;
         default :
@@ -178,8 +178,8 @@ void Simulation::fillVectors(void){
     vec.rabbit.erase(vec.rabbit.begin(),vec.rabbit.end());
     vec.grass.erase(vec.grass.begin(),vec.grass.end());
 
-    for (unsigned x = 1; x <= EDGE_LENGTH_GAME_BOARD_X; x++)
-        for (unsigned y = 1; y <= EDGE_LENGTH_GAME_BOARD_Y; y++){
+    for (unsigned x = 1; x <= BOARD_LENGTH_X; x++)
+        for (unsigned y = 1; y <= BOARD_LENGTH_Y; y++){
             switch(worldPlayground[x][y]->who()){
             case GRASS:
                 vec.grass.push_back(&worldPlayground[x][y]);

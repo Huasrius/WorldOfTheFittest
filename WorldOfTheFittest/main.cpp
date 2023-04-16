@@ -282,9 +282,11 @@ int main()
     glDeleteVertexArrays(SCR_SQUARES, VAOs);
     glDeleteBuffers(SCR_SQUARES, VBOs);
     glDeleteProgram(shaderProgramHumus);
-    glDeleteProgram(shaderProgramFoxMale);
     glDeleteProgram(shaderProgramGras);
+    glDeleteProgram(shaderProgramFoxMale);
+    glDeleteProgram(shaderProgramFoxFemale);
     glDeleteProgram(shaderProgramRabbitMale);
+    glDeleteProgram(shaderProgramRabbitFemale);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

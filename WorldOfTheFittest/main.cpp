@@ -38,37 +38,37 @@ const char* fragmentShaderHumusSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.0f, 1.0f);\n"
+"   FragColor = vec4(0.8f, 0.4f, 0.0f, 1.0f);\n"
 "}\n\0";
 const char* fragmentShaderGrasSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
+"   FragColor = vec4(0.0f, 0.4f, 0.0f, 1.0f);\n"
 "}\n\0";
 const char* fragmentShaderFoxMaleSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(0.0f, 1.0f, 0.0f, 1.0f);\n"
+"   FragColor = vec4(0.8f, 0.0f, 0.0f, 1.0f);\n"
 "}\n\0";
 const char* fragmentShaderFoxFemaleSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
+"   FragColor = vec4(0.8f, 0.0f, 0.3f, 1.0f);\n"
 "}\n\0";
 const char* fragmentShaderRabbitMaleSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(0.0f, 0.0f, 1.0f, 1.0f);\n"
+"   FragColor = vec4(0.0f, 0.0f, 0.8f, 1.0f);\n"
 "}\n\0";
 const char* fragmentShaderRabbitFemaleSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(0.2f, 0.0f, 0.8f, 1.0f);\n"
+"   FragColor = vec4(0.2f, 0.0f, 1.0f, 1.0f);\n"
 "}\n\0";
 
 int main()
@@ -167,6 +167,9 @@ int main()
     glAttachShader(shaderProgramRabbitMale, vertexShader);
     glAttachShader(shaderProgramRabbitMale, fragmentShaderRabbitMale);
     glLinkProgram(shaderProgramRabbitMale);
+    glAttachShader(shaderProgramRabbitFemale, vertexShader);
+    glAttachShader(shaderProgramRabbitFemale, fragmentShaderRabbitFemale);
+    glLinkProgram(shaderProgramRabbitFemale);
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -274,7 +277,7 @@ int main()
         glfwSwapBuffers(window);
         glfwPollEvents();
         sim.oneCycle();
-        Sleep(50);
+        Sleep(CYCLE_TIME_MS);
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:

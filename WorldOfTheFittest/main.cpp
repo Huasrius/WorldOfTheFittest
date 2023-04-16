@@ -34,29 +34,41 @@ const char* vertexShaderSource = "#version 330 core\n"
 "{\n"
 "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 "}\0";
-const char* fragmentShaderBrownSource = "#version 330 core\n"
+const char* fragmentShaderHumusSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
 "   FragColor = vec4(1.0f, 0.5f, 0.0f, 1.0f);\n"
 "}\n\0";
-const char* fragmentShaderRedSource = "#version 330 core\n"
+const char* fragmentShaderGrasSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
 "   FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
 "}\n\0";
-const char* fragmentShaderGreenSource = "#version 330 core\n"
+const char* fragmentShaderFoxMaleSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
 "   FragColor = vec4(0.0f, 1.0f, 0.0f, 1.0f);\n"
 "}\n\0";
-const char* fragmentShaderBlueSource = "#version 330 core\n"
+const char* fragmentShaderFoxFemaleSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
+"}\n\0";
+const char* fragmentShaderRabbitMaleSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
 "   FragColor = vec4(0.0f, 0.0f, 1.0f, 1.0f);\n"
+"}\n\0";
+const char* fragmentShaderRabbitFemaleSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(0.2f, 0.0f, 0.8f, 1.0f);\n"
 "}\n\0";
 
 int main()
@@ -111,39 +123,50 @@ int main()
     // ------------------------------------
     // we skipped compile log checks this time for readability (if you do encounter issues, add the compile-checks! see previous code samples)
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    unsigned int fragmentShaderBrown = glCreateShader(GL_FRAGMENT_SHADER);
-    unsigned int fragmentShaderRed = glCreateShader(GL_FRAGMENT_SHADER);
-    unsigned int fragmentShaderGreen = glCreateShader(GL_FRAGMENT_SHADER);
-    unsigned int fragmentShaderBlue = glCreateShader(GL_FRAGMENT_SHADER);
-    unsigned int shaderProgramBrown = glCreateProgram();
-    unsigned int shaderProgramRed = glCreateProgram();
-    unsigned int shaderProgramGreen = glCreateProgram();
-    unsigned int shaderProgramBlue = glCreateProgram();
+    unsigned int fragmentShaderHumus = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderFoxMale = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderFoxFemale = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderGras = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderRabbitMale = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderRabbitFemale = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int shaderProgramHumus = glCreateProgram();
+    unsigned int shaderProgramFoxMale = glCreateProgram();
+    unsigned int shaderProgramFoxFemale = glCreateProgram();
+    unsigned int shaderProgramGras = glCreateProgram();
+    unsigned int shaderProgramRabbitMale = glCreateProgram();
+    unsigned int shaderProgramRabbitFemale = glCreateProgram();
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
-    glShaderSource(fragmentShaderBrown, 1, &fragmentShaderBrownSource, NULL);
-    glCompileShader(fragmentShaderBrown);
-    glShaderSource(fragmentShaderRed, 1, &fragmentShaderRedSource, NULL);
-    glCompileShader(fragmentShaderRed);
-    glShaderSource(fragmentShaderGreen, 1, &fragmentShaderGreenSource, NULL);
-    glCompileShader(fragmentShaderGreen);
-    glShaderSource(fragmentShaderBlue, 1, &fragmentShaderBlueSource, NULL);
-    glCompileShader(fragmentShaderBlue);
+    glShaderSource(fragmentShaderHumus, 1, &fragmentShaderHumusSource, NULL);
+    glCompileShader(fragmentShaderHumus);
+    glShaderSource(fragmentShaderFoxMale, 1, &fragmentShaderFoxMaleSource, NULL);
+    glCompileShader(fragmentShaderFoxMale);
+    glShaderSource(fragmentShaderFoxFemale, 1, &fragmentShaderFoxFemaleSource, NULL);
+    glCompileShader(fragmentShaderFoxFemale);
+    glShaderSource(fragmentShaderGras, 1, &fragmentShaderGrasSource, NULL);
+    glCompileShader(fragmentShaderGras);
+    glShaderSource(fragmentShaderRabbitMale, 1, &fragmentShaderRabbitMaleSource, NULL);
+    glCompileShader(fragmentShaderRabbitMale);
+    glShaderSource(fragmentShaderRabbitFemale, 1, &fragmentShaderRabbitFemaleSource, NULL);
+    glCompileShader(fragmentShaderRabbitFemale);
     // link the first program object
-    glAttachShader(shaderProgramBrown, vertexShader);
-    glAttachShader(shaderProgramBrown, fragmentShaderBrown);
-    glLinkProgram(shaderProgramBrown);
+    glAttachShader(shaderProgramHumus, vertexShader);
+    glAttachShader(shaderProgramHumus, fragmentShaderHumus);
+    glLinkProgram(shaderProgramHumus);
     // then link the second program object using a different fragment shader (but same vertex shader)
     // this is perfectly allowed since the inputs and outputs of both the vertex and fragment shaders are equally matched.
-    glAttachShader(shaderProgramRed, vertexShader);
-    glAttachShader(shaderProgramRed, fragmentShaderRed);
-    glLinkProgram(shaderProgramRed);
-    glAttachShader(shaderProgramGreen, vertexShader);
-    glAttachShader(shaderProgramGreen, fragmentShaderGreen);
-    glLinkProgram(shaderProgramGreen);
-    glAttachShader(shaderProgramBlue, vertexShader);
-    glAttachShader(shaderProgramBlue, fragmentShaderBlue);
-    glLinkProgram(shaderProgramBlue);
+    glAttachShader(shaderProgramFoxMale, vertexShader);
+    glAttachShader(shaderProgramFoxMale, fragmentShaderFoxMale);
+    glLinkProgram(shaderProgramFoxMale);
+    glAttachShader(shaderProgramFoxFemale, vertexShader);
+    glAttachShader(shaderProgramFoxFemale, fragmentShaderFoxFemale);
+    glLinkProgram(shaderProgramFoxFemale);
+    glAttachShader(shaderProgramGras, vertexShader);
+    glAttachShader(shaderProgramGras, fragmentShaderGras);
+    glLinkProgram(shaderProgramGras);
+    glAttachShader(shaderProgramRabbitMale, vertexShader);
+    glAttachShader(shaderProgramRabbitMale, fragmentShaderRabbitMale);
+    glLinkProgram(shaderProgramRabbitMale);
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -220,22 +243,22 @@ int main()
                 
                 switch (sim.worldPlayground[x+1][y+1]->who()) {
                 case EMPTY:
-                    glUseProgram(shaderProgramBrown);
+                    glUseProgram(shaderProgramHumus);
                     break;
                 case GRASS:
-                    glUseProgram(shaderProgramGreen);
+                    glUseProgram(shaderProgramGras);
                     break;
                 case RABBIT:
                     if (static_cast<Animal*>(sim.worldPlayground[x][y])->getGender())
-                        glUseProgram(shaderProgramBlue);
+                        glUseProgram(shaderProgramRabbitFemale);
                     else
-                        glUseProgram(shaderProgramBlue);
+                        glUseProgram(shaderProgramRabbitMale);
                     break;
                 case FOX:
                     if (static_cast<Animal*>(sim.worldPlayground[x][y])->getGender())
-                        glUseProgram(shaderProgramRed);
+                        glUseProgram(shaderProgramFoxFemale);
                     else
-                        glUseProgram(shaderProgramRed);
+                        glUseProgram(shaderProgramFoxMale);
                     break;
                 default:
                     break;
@@ -251,17 +274,17 @@ int main()
         glfwSwapBuffers(window);
         glfwPollEvents();
         sim.oneCycle();
-        Sleep(500);
+        Sleep(50);
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
     glDeleteVertexArrays(SCR_SQUARES, VAOs);
     glDeleteBuffers(SCR_SQUARES, VBOs);
-    glDeleteProgram(shaderProgramBrown);
-    glDeleteProgram(shaderProgramRed);
-    glDeleteProgram(shaderProgramGreen);
-    glDeleteProgram(shaderProgramBlue);
+    glDeleteProgram(shaderProgramHumus);
+    glDeleteProgram(shaderProgramFoxMale);
+    glDeleteProgram(shaderProgramGras);
+    glDeleteProgram(shaderProgramRabbitMale);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

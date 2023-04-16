@@ -43,7 +43,7 @@ enum Role {EMPTY, GRASS, RABBIT, FOX, MAX_ROLE};
 
 const size_t DEFAULT_GROW_LEVEL {2};
 const size_t MAX_GROW_LEVEL {8};
-const size_t EDGE_LENGTH_GAME_BOARD_X {100};
+const size_t EDGE_LENGTH_GAME_BOARD_X {60};
 const size_t EDGE_LENGTH_GAME_BOARD_Y {60};
 const size_t LIFESPAN_RABBIT {6};
 const size_t SEXUAL_MATURITY_RABBIT {1};

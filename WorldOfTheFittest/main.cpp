@@ -249,13 +249,13 @@ int main()
                     glUseProgram(shaderProgramGras);
                     break;
                 case RABBIT:
-                    if (static_cast<Animal*>(sim.worldPlayground[x][y])->getGender())
+                    if (static_cast<Animal*>(sim.worldPlayground[x+1][y+1])->getGender())
                         glUseProgram(shaderProgramRabbitFemale);
                     else
                         glUseProgram(shaderProgramRabbitMale);
                     break;
                 case FOX:
-                    if (static_cast<Animal*>(sim.worldPlayground[x][y])->getGender())
+                    if (static_cast<Animal*>(sim.worldPlayground[x+1][y+1])->getGender())
                         glUseProgram(shaderProgramFoxFemale);
                     else
                         glUseProgram(shaderProgramFoxMale);

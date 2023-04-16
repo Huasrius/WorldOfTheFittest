@@ -39,6 +39,9 @@
     <ClCompile Include="rabbit.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Documents\libraries\OpenGraphicsLibrary\src\glad.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="simulation.h">

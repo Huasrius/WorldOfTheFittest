@@ -32,6 +32,7 @@
 #include <time.h>
 #include <vector>
 #include <stdlib.h>
+#include <windows.h>  // For MS Windows
 
 using namespace std;
 

@@ -55,7 +55,6 @@ Simulation::Simulation() {
 
     //fill randomly the WorldPlayground with the CLass FOX times FOX_START_POPULATION
     setStart(FOX);
-    display();
 }
 
 /**
@@ -116,13 +115,6 @@ void Simulation::setNeighbors(unsigned x, unsigned y){
     neighbor[5] = &worldPlayground[x][y+1];
     neighbor[6] = &worldPlayground[x-1][y+1];
     neighbor[7] = &worldPlayground[x-1][y];
-}
-
-/**
- * @brief Simulation::display displays the hole worldPlayground
- */
-void Simulation::display(void) const {
- 
 }
 
 /**

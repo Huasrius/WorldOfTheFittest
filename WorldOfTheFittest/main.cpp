@@ -34,17 +34,29 @@ const char* vertexShaderSource = "#version 330 core\n"
 "{\n"
 "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 "}\0";
-const char* fragmentShader1Source = "#version 330 core\n"
+const char* fragmentShaderBrownSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+"   FragColor = vec4(1.0f, 0.5f, 0.0f, 1.0f);\n"
 "}\n\0";
-const char* fragmentShader2Source = "#version 330 core\n"
+const char* fragmentShaderRedSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
+"   FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
+"}\n\0";
+const char* fragmentShaderGreenSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(0.0f, 1.0f, 0.0f, 1.0f);\n"
+"}\n\0";
+const char* fragmentShaderBlueSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(0.0f, 0.0f, 1.0f, 1.0f);\n"
 "}\n\0";
 
 int main()
@@ -99,25 +111,39 @@ int main()
     // ------------------------------------
     // we skipped compile log checks this time for readability (if you do encounter issues, add the compile-checks! see previous code samples)
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    unsigned int fragmentShaderOrange = glCreateShader(GL_FRAGMENT_SHADER); // the first fragment shader that outputs the color orange
-    unsigned int fragmentShaderYellow = glCreateShader(GL_FRAGMENT_SHADER); // the second fragment shader that outputs the color yellow
-    unsigned int shaderProgramOrange = glCreateProgram();
-    unsigned int shaderProgramYellow = glCreateProgram(); // the second shader program
+    unsigned int fragmentShaderBrown = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderRed = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderGreen = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShaderBlue = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int shaderProgramBrown = glCreateProgram();
+    unsigned int shaderProgramRed = glCreateProgram();
+    unsigned int shaderProgramGreen = glCreateProgram();
+    unsigned int shaderProgramBlue = glCreateProgram();
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
-    glShaderSource(fragmentShaderOrange, 1, &fragmentShader1Source, NULL);
-    glCompileShader(fragmentShaderOrange);
-    glShaderSource(fragmentShaderYellow, 1, &fragmentShader2Source, NULL);
-    glCompileShader(fragmentShaderYellow);
+    glShaderSource(fragmentShaderBrown, 1, &fragmentShaderBrownSource, NULL);
+    glCompileShader(fragmentShaderBrown);
+    glShaderSource(fragmentShaderRed, 1, &fragmentShaderRedSource, NULL);
+    glCompileShader(fragmentShaderRed);
+    glShaderSource(fragmentShaderGreen, 1, &fragmentShaderGreenSource, NULL);
+    glCompileShader(fragmentShaderGreen);
+    glShaderSource(fragmentShaderBlue, 1, &fragmentShaderBlueSource, NULL);
+    glCompileShader(fragmentShaderBlue);
     // link the first program object
-    glAttachShader(shaderProgramOrange, vertexShader);
-    glAttachShader(shaderProgramOrange, fragmentShaderOrange);
-    glLinkProgram(shaderProgramOrange);
+    glAttachShader(shaderProgramBrown, vertexShader);
+    glAttachShader(shaderProgramBrown, fragmentShaderBrown);
+    glLinkProgram(shaderProgramBrown);
     // then link the second program object using a different fragment shader (but same vertex shader)
     // this is perfectly allowed since the inputs and outputs of both the vertex and fragment shaders are equally matched.
-    glAttachShader(shaderProgramYellow, vertexShader);
-    glAttachShader(shaderProgramYellow, fragmentShaderYellow);
-    glLinkProgram(shaderProgramYellow);
+    glAttachShader(shaderProgramRed, vertexShader);
+    glAttachShader(shaderProgramRed, fragmentShaderRed);
+    glLinkProgram(shaderProgramRed);
+    glAttachShader(shaderProgramGreen, vertexShader);
+    glAttachShader(shaderProgramGreen, fragmentShaderGreen);
+    glLinkProgram(shaderProgramGreen);
+    glAttachShader(shaderProgramBlue, vertexShader);
+    glAttachShader(shaderProgramBlue, fragmentShaderBlue);
+    glLinkProgram(shaderProgramBlue);
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -189,28 +215,27 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         bufferIndex = 0;
-
         for (int x = 0; x < SCR_SQUARES_X; x++) {
             for (int y = 0; y < SCR_SQUARES_Y; y++) {
                 
                 switch (sim.worldPlayground[x+1][y+1]->who()) {
                 case EMPTY:
-                    glUseProgram(shaderProgramOrange);
+                    glUseProgram(shaderProgramBrown);
                     break;
                 case GRASS:
-                    glUseProgram(shaderProgramYellow);
+                    glUseProgram(shaderProgramGreen);
                     break;
                 case RABBIT:
                     if (static_cast<Animal*>(sim.worldPlayground[x][y])->getGender())
-                        glUseProgram(shaderProgramYellow);
+                        glUseProgram(shaderProgramBlue);
                     else
-                        glUseProgram(shaderProgramYellow);
+                        glUseProgram(shaderProgramBlue);
                     break;
                 case FOX:
                     if (static_cast<Animal*>(sim.worldPlayground[x][y])->getGender())
-                        glUseProgram(shaderProgramYellow);
+                        glUseProgram(shaderProgramRed);
                     else
-                        glUseProgram(shaderProgramYellow);
+                        glUseProgram(shaderProgramRed);
                     break;
                 default:
                     break;
@@ -225,14 +250,18 @@ int main()
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
+        sim.oneCycle();
+        Sleep(500);
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
-    glDeleteVertexArrays(2, VAOs);
-    glDeleteBuffers(2, VBOs);
-    glDeleteProgram(shaderProgramOrange);
-    glDeleteProgram(shaderProgramYellow);
+    glDeleteVertexArrays(SCR_SQUARES, VAOs);
+    glDeleteBuffers(SCR_SQUARES, VBOs);
+    glDeleteProgram(shaderProgramBrown);
+    glDeleteProgram(shaderProgramRed);
+    glDeleteProgram(shaderProgramGreen);
+    glDeleteProgram(shaderProgramBlue);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

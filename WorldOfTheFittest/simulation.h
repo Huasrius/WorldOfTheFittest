@@ -45,7 +45,6 @@ class Simulation
 {
 public:
     Simulation();
-    void display(void) const;
     void oneCycle(void);
     Living* worldPlayground[EDGE_LENGTH_GAME_BOARD + 2][EDGE_LENGTH_GAME_BOARD + 2];
 private:

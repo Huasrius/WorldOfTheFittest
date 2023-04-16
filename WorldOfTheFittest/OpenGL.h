@@ -27,12 +27,12 @@
 #include <GLFW/glfw3.h>
 
 // settings for disaplay
-const unsigned int SCR_WIDTH = BOARD_LENGTH_X*15;
-const unsigned int SCR_HEIGHT = BOARD_LENGTH_Y*15;
-const unsigned int SCR_SQUARES_X = BOARD_LENGTH_X;
-const unsigned int SCR_SQUARES_Y = BOARD_LENGTH_Y;
-const unsigned int SCR_SQUARES = SCR_SQUARES_X * SCR_SQUARES_Y;
-const unsigned int SCR_POINTS_PER_SQUARE = 12;
+const size_t SCR_WIDTH = BOARD_LENGTH_X*15;
+const size_t SCR_HEIGHT = BOARD_LENGTH_Y*15;
+const size_t SCR_SQUARES_X = BOARD_LENGTH_X;
+const size_t SCR_SQUARES_Y = BOARD_LENGTH_Y;
+const size_t SCR_SQUARES = SCR_SQUARES_X * SCR_SQUARES_Y;
+const size_t SCR_POINTS_PER_SQUARE = 12;
 const float SCR_GLFW_Range = 2.0;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);

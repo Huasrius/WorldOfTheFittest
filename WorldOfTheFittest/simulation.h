@@ -46,7 +46,7 @@ class Simulation
 public:
     Simulation();
     void oneCycle(void);
-    Living* worldPlayground[EDGE_LENGTH_GAME_BOARD + 2][EDGE_LENGTH_GAME_BOARD + 2];
+    Living* worldPlayground[EDGE_LENGTH_GAME_BOARD_X + 2][EDGE_LENGTH_GAME_BOARD_Y + 2];
 private:
     void fillVectors(void);
     Living** neighbor[NEIGHBORHOOD_SIZE];

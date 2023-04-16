@@ -43,7 +43,8 @@ enum Role {EMPTY, GRASS, RABBIT, FOX, MAX_ROLE};
 
 const size_t DEFAULT_GROW_LEVEL {2};
 const size_t MAX_GROW_LEVEL {8};
-const size_t EDGE_LENGTH_GAME_BOARD {100};
+const size_t EDGE_LENGTH_GAME_BOARD_X {100};
+const size_t EDGE_LENGTH_GAME_BOARD_Y {60};
 const size_t LIFESPAN_RABBIT {6};
 const size_t SEXUAL_MATURITY_RABBIT {1};
 const size_t LIFESPAN_FOX {9};
@@ -52,7 +53,7 @@ const size_t MAX_REPLETION_LEVEL_FOX {4};
 const size_t MAX_REPLETION_LEVEL_RABBIT {3};
 const size_t GRASS_START_POPULATION {400};
 const size_t RABBIT_START_POPULATION {300};
-const size_t FOX_START_POPULATION {150};
+const size_t FOX_START_POPULATION {500};
 const size_t NEIGHBORHOOD_SIZE {8};
 
 #endif // PROPERTIES_H

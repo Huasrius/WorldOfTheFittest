@@ -34,17 +34,17 @@ Simulation::Simulation() {
     srand(static_cast<unsigned>(clock()));
 
     //set the limit for WorldPlayground
-    for (unsigned ix = 0; ix < EDGE_LENGTH_GAME_BOARD + 2; ix++){
+    for (unsigned ix = 0; ix < EDGE_LENGTH_GAME_BOARD_X + 2; ix++){
         worldPlayground[ix][0] = nullptr;
-        worldPlayground[ix][EDGE_LENGTH_GAME_BOARD + 1] = nullptr;
+        worldPlayground[ix][EDGE_LENGTH_GAME_BOARD_X + 1] = nullptr;
     }
-    for (unsigned iy = 1; iy < EDGE_LENGTH_GAME_BOARD + 1; iy++){
+    for (unsigned iy = 1; iy < EDGE_LENGTH_GAME_BOARD_Y + 1; iy++){
         worldPlayground[0][iy] = nullptr;
-        worldPlayground[EDGE_LENGTH_GAME_BOARD + 1][iy] = nullptr;
+        worldPlayground[EDGE_LENGTH_GAME_BOARD_Y + 1][iy] = nullptr;
     }
     //fill the whole WorldPlayground with the Class Empty
-    for (unsigned ix = 1; ix <= EDGE_LENGTH_GAME_BOARD; ix++)
-        for (unsigned iy = 1; iy <= EDGE_LENGTH_GAME_BOARD; iy++){
+    for (unsigned ix = 1; ix <= EDGE_LENGTH_GAME_BOARD_X; ix++)
+        for (unsigned iy = 1; iy <= EDGE_LENGTH_GAME_BOARD_Y; iy++){
             worldPlayground[ix][iy] = new Empty(ix,iy);
         }
     //fill randomly the WorldPlayground with the CLass Grass times GRASS_START_POPULATION
@@ -143,8 +143,8 @@ void Simulation::setStart(Role role){
     //set a new grass, rabbit or fox at a random location and fill a vector for each role
     for(unsigned i = 0; i < startPopulation; i++){
         do{
-            x = 1 + rand()%EDGE_LENGTH_GAME_BOARD;
-            y = 1 + rand()%EDGE_LENGTH_GAME_BOARD;
+            x = 1 + rand()%EDGE_LENGTH_GAME_BOARD_X;
+            y = 1 + rand()%EDGE_LENGTH_GAME_BOARD_Y;
         }while(EMPTY != worldPlayground[x][y]->who());
 
         switch(role){
@@ -178,8 +178,8 @@ void Simulation::fillVectors(void){
     vec.rabbit.erase(vec.rabbit.begin(),vec.rabbit.end());
     vec.grass.erase(vec.grass.begin(),vec.grass.end());
 
-    for (unsigned x = 1; x <= EDGE_LENGTH_GAME_BOARD; x++)
-        for (unsigned y = 1; y <= EDGE_LENGTH_GAME_BOARD; y++){
+    for (unsigned x = 1; x <= EDGE_LENGTH_GAME_BOARD_X; x++)
+        for (unsigned y = 1; y <= EDGE_LENGTH_GAME_BOARD_Y; y++){
             switch(worldPlayground[x][y]->who()){
             case GRASS:
                 vec.grass.push_back(&worldPlayground[x][y]);

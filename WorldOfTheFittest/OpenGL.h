@@ -27,10 +27,10 @@
 #include <GLFW/glfw3.h>
 
 // settings for disaplay
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 800;
-const unsigned int SCR_SQUARES_X = EDGE_LENGTH_GAME_BOARD;
-const unsigned int SCR_SQUARES_Y = EDGE_LENGTH_GAME_BOARD;
+const unsigned int SCR_WIDTH = EDGE_LENGTH_GAME_BOARD_X*10;
+const unsigned int SCR_HEIGHT = EDGE_LENGTH_GAME_BOARD_Y*10;
+const unsigned int SCR_SQUARES_X = EDGE_LENGTH_GAME_BOARD_X;
+const unsigned int SCR_SQUARES_Y = EDGE_LENGTH_GAME_BOARD_Y;
 const unsigned int SCR_SQUARES = SCR_SQUARES_X * SCR_SQUARES_Y;
 const unsigned int SCR_POINTS_PER_SQUARE = 12;
 const float SCR_GLFW_Range = 2.0;

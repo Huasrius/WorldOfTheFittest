@@ -41,7 +41,7 @@ class Fox : public Animal
 public:
     Fox(int x, int y, int age);
     Role who();
-    void action(Living** neighborhood[NEIGHBORHOOD_SIZE]);
+    void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
 };
 
 #endif // FOX_H

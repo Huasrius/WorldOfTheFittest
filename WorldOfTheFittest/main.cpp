@@ -173,11 +173,16 @@ int main()
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
-    unsigned int VBOs[SCR_SQUARES], VAOs[SCR_SQUARES], EBOs[SCR_SQUARES];
+    unsigned int VBOs[BOARD_LEVELS][SCR_SQUARES], VAOs[BOARD_LEVELS][SCR_SQUARES], EBOs[BOARD_LEVELS][SCR_SQUARES];
     unsigned int bufferIndex = 0;
-    glGenVertexArrays(SCR_SQUARES, VAOs);
-    glGenBuffers(SCR_SQUARES, VBOs);
-    glGenBuffers(SCR_SQUARES, EBOs);
+
+
+    for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
+        glGenVertexArrays(SCR_SQUARES, VAOs[boardLevel]);
+        glGenBuffers(SCR_SQUARES, VBOs[boardLevel]);
+        glGenBuffers(SCR_SQUARES, EBOs[boardLevel]);
+    }
+
     // 3D Array Points of all the Squares
     float squares[SCR_SQUARES_X][SCR_SQUARES_Y][SCR_POINTS_PER_SQUARE]{};
     unsigned int sizOfSquare = sizeof(squares[0][0]);
@@ -194,36 +199,37 @@ int main()
     float sizeSquareYHalf = deltaY / 2;
     float centerX = 0.0;
     float centerY = 0.0;
-
-    for (int x = 0; x < SCR_SQUARES_X; x++) {
-        centerX = deltaX * x + deltaX / 2 - SCR_GLFW_Range / 2;
-        for (int y = 0; y < SCR_SQUARES_Y; y++) {
-            centerY = deltaY * y + deltaY / 2 - SCR_GLFW_Range / 2;
-            // calculate the points of the square
-            float squareCoordinates[] = {
-                centerX + sizeSquareXHalf, centerY + sizeSquareYHalf, 0.0f,  // top right
-                centerX + sizeSquareXHalf, centerY - sizeSquareYHalf, 0.0f,  // bottom right
-                centerX - sizeSquareXHalf, centerY - sizeSquareYHalf, 0.0f,  // bottom left
-                centerX - sizeSquareXHalf, centerY + sizeSquareYHalf, 0.0f   // top left 
-            };
-            // fill in the Points of the square
-            for (int i = 0; i < SCR_POINTS_PER_SQUARE; i++) {
-                squares[x][y][i] = squareCoordinates[i];
-                // cout << "Coordinates " << squares[x][y][i] << endl
+    for (unsigned boardLevel = 1; boardLevel < BOARD_LEVELS; boardLevel++) {
+        for (int x = 0; x < SCR_SQUARES_X; x++) {
+            centerX = deltaX * x + deltaX / 2 - SCR_GLFW_Range / 2;
+            for (int y = 0; y < SCR_SQUARES_Y; y++) {
+                centerY = deltaY * y + deltaY / 2 - SCR_GLFW_Range / 2;
+                // calculate the points of the square
+                float squareCoordinates[] = {
+                    centerX + sizeSquareXHalf, centerY + sizeSquareYHalf, 0.0f,  // top right
+                    centerX + sizeSquareXHalf, centerY - sizeSquareYHalf, 0.0f,  // bottom right
+                    centerX - sizeSquareXHalf, centerY - sizeSquareYHalf, 0.0f,  // bottom left
+                    centerX - sizeSquareXHalf, centerY + sizeSquareYHalf, 0.0f   // top left 
+                };
+                // fill in the Points of the square
+                for (int i = 0; i < SCR_POINTS_PER_SQUARE; i++) {
+                    squares[x][y][i] = squareCoordinates[i];
+                    // cout << "Coordinates " << squares[x][y][i] << endl
+                }
+                //cout << "Bufferindex " << bufferIndex << endl;
+                glBindVertexArray(VAOs[boardLevel][bufferIndex]);
+                glBindBuffer(GL_ARRAY_BUFFER, VBOs[boardLevel][bufferIndex]);
+                glBufferData(GL_ARRAY_BUFFER, sizOfSquare, squares[x][y], GL_STATIC_DRAW);
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOs[boardLevel][bufferIndex]);
+                glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeOfIndices, indices, GL_STATIC_DRAW);
+                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	// Vertex attributes stay the same
+                glEnableVertexAttribArray(0);
+                // glBindVertexArray(0); // no need to unbind at all as we directly bind a different VAO the next few lines.
+                // but beware of calls that could affect VAOs while this one is bound (like binding element buffer objects, or enabling/disabling vertex attributes)
+                bufferIndex++;
             }
-            //cout << "Bufferindex " << bufferIndex << endl;
-            glBindVertexArray(VAOs[bufferIndex]);
-            glBindBuffer(GL_ARRAY_BUFFER, VBOs[bufferIndex]);
-            glBufferData(GL_ARRAY_BUFFER, sizOfSquare, squares[x][y], GL_STATIC_DRAW);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOs[bufferIndex]);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeOfIndices, indices, GL_STATIC_DRAW);
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	// Vertex attributes stay the same
-            glEnableVertexAttribArray(0);
-            // glBindVertexArray(0); // no need to unbind at all as we directly bind a different VAO the next few lines.
-            // but beware of calls that could affect VAOs while this one is bound (like binding element buffer objects, or enabling/disabling vertex attributes)
-            bufferIndex++;
-        }
 
+        }
     }
 
     // uncomment this call to draw in wireframe polygons.
@@ -241,34 +247,36 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         bufferIndex = 0;
-        for (int x = 0; x < SCR_SQUARES_X; x++) {
-            for (int y = 0; y < SCR_SQUARES_Y; y++) {
-                
-                switch (sim.worldPlayground[x+1][y+1]->who()) {
-                case EMPTY:
-                    glUseProgram(shaderProgramHumus);
-                    break;
-                case GRASS:
-                    glUseProgram(shaderProgramGras);
-                    break;
-                case RABBIT:
-                    if (static_cast<Animal*>(sim.worldPlayground[x+1][y+1])->getGender())
-                        glUseProgram(shaderProgramRabbitFemale);
-                    else
-                        glUseProgram(shaderProgramRabbitMale);
-                    break;
-                case FOX:
-                    if (static_cast<Animal*>(sim.worldPlayground[x+1][y+1])->getGender())
-                        glUseProgram(shaderProgramFoxFemale);
-                    else
-                        glUseProgram(shaderProgramFoxMale);
-                    break;
-                default:
-                    break;
+        for (unsigned boardLevel = 1; boardLevel < BOARD_LEVELS; boardLevel++) {
+            for (int x = 0; x < SCR_SQUARES_X; x++) {
+                for (int y = 0; y < SCR_SQUARES_Y; y++) {
+
+                    switch (sim.worldPlayground[boardLevel][x + 1][y + 1]->who()) {
+                    case EMPTY:
+                        glUseProgram(shaderProgramHumus);
+                        break;
+                    case GRASS:
+                        glUseProgram(shaderProgramGras);
+                        break;
+                    case RABBIT:
+                        if (static_cast<Animal*>(sim.worldPlayground[boardLevel][x + 1][y + 1])->getGender())
+                            glUseProgram(shaderProgramRabbitFemale);
+                        else
+                            glUseProgram(shaderProgramRabbitMale);
+                        break;
+                    case FOX:
+                        if (static_cast<Animal*>(sim.worldPlayground[boardLevel][x + 1][y + 1])->getGender())
+                            glUseProgram(shaderProgramFoxFemale);
+                        else
+                            glUseProgram(shaderProgramFoxMale);
+                        break;
+                    default:
+                        break;
+                    }
+                    glBindVertexArray(VAOs[boardLevel][bufferIndex]);
+                    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+                    bufferIndex++;
                 }
-                glBindVertexArray(VAOs[bufferIndex]);
-                glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-                bufferIndex++;
             }
         }
 
@@ -282,8 +290,11 @@ int main()
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
-    glDeleteVertexArrays(SCR_SQUARES, VAOs);
-    glDeleteBuffers(SCR_SQUARES, VBOs);
+    for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
+        glDeleteVertexArrays(SCR_SQUARES, VAOs[boardLevel]);
+        glDeleteBuffers(SCR_SQUARES, VBOs[boardLevel]);
+        glDeleteBuffers(SCR_SQUARES, EBOs[boardLevel]);
+    }
     glDeleteProgram(shaderProgramHumus);
     glDeleteProgram(shaderProgramGras);
     glDeleteProgram(shaderProgramFoxMale);

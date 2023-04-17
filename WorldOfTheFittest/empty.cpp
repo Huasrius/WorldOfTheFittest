@@ -48,7 +48,7 @@ Role Empty::who(){
  * @brief Empty::action make a static_cast to void from the array neighborhood prevent a warning
  * @param an Array neighborhood of size NEIGHBORHOOD_SIZE with Living double Pointer
  */
-inline void Empty::action(Living** neighborhood[NEIGHBORHOOD_SIZE])
+inline void Empty::action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE])
 {
      static_cast<void>(neighborhood);
 }

@@ -43,7 +43,7 @@ public:
     bool isPregnant;
     Animal();
     virtual Role who() = 0;
-    virtual void action(Living** neighborhood[NEIGHBORHOOD_SIZE]) = 0;
+    virtual void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]) = 0;
     unsigned int getAge();
     unsigned int getGender();
     unsigned int getRepletionLevel();

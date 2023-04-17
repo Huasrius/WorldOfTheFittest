@@ -46,10 +46,10 @@ class Simulation
 public:
     Simulation();
     void oneCycle(void);
-    Living* worldPlayground[BOARD_LENGTH_X + 2][BOARD_LENGTH_Y + 2];
+    Living* worldPlayground[BOARD_LEVELS][BOARD_LENGTH_X + 2][BOARD_LENGTH_Y + 2];
 private:
     void fillVectors(void);
-    Living** neighbor[NEIGHBORHOOD_SIZE];
+    Living** neighbor[BOARD_LEVELS][NEIGHBORHOOD_SIZE];
     struct vec_{
         vector<Living**> grass;
         vector<Living**> rabbit;

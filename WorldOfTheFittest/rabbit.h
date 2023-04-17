@@ -40,7 +40,7 @@ class Rabbit : public Animal
 public:
     Rabbit(int x,int y,int age);
     Role who();
-    void action(Living** neighborhood[NEIGHBORHOOD_SIZE]);
+    void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
 };
 
 #endif // RABBIT_H

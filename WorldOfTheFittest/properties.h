@@ -40,11 +40,13 @@
 using namespace std;
 
 enum Role {EMPTY, GRASS, RABBIT, FOX, MAX_ROLE};
+enum Level {GROUND, ABOVE};
 
 // Board
-const size_t BOARD_LENGTH_X = 100;
+const size_t BOARD_LENGTH_X = 80;
 const size_t BOARD_LENGTH_Y = 60;
-const size_t CYCLE_TIME_MS = 20;
+const size_t BOARD_LEVELS = 2;
+const size_t CYCLE_TIME_MS = 1;
 // Life
 const size_t DEFAULT_GROW_LEVEL = 2;
 const size_t MAX_GROW_LEVEL = 8;
@@ -58,8 +60,8 @@ const size_t RABBIT_SEXUAL_MATURITY = 1;
 const size_t RABBIT_MAX_REPLETION_LEVEL = 3;
 // Fox
 const size_t FOX_START_POPULATION = 500;
-const size_t FOX_LIVESPAN = 9;
+const size_t FOX_LIVESPAN = 20;
 const size_t FOX_SEXUAL_MATURITY = 1;
-const size_t FOX_MAX_REPLETION_LEVEL = 4;
+const size_t FOX_MAX_REPLETION_LEVEL = 6;
 
 #endif // PROPERTIES_H

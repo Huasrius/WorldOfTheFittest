@@ -37,7 +37,7 @@ class Empty : public Living
 public:
     Empty(int x, int y);
     Role who();
-    void action(Living** neighborhood[NEIGHBORHOOD_SIZE]);
+    void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
 };
 
 #endif // EMPTY_H

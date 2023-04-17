@@ -50,14 +50,14 @@ Role Grass::who() {
  * @brief Grass::action can replace an empty class in the neighborhood with a class grass
  * @param an Array neighborhood of size NEIGHBORHOOD_SIZE with Living double Pointer
  */
-void Grass::action(Living **neighborhood[]){
+void Grass::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
     for (size_t i = 0; i < NEIGHBORHOOD_SIZE; i++ )
-        if(*neighborhood[i]!= nullptr)
+        if(*neighborhood[GROUND][i]!= nullptr)
             // If the neighborhood is empty a new grass grows with a chance of a half
-            if((*neighborhood[i])->who() == EMPTY){
+            if((*neighborhood[GROUND][i])->who() == EMPTY){
                 if(rand()%2 == 0){
-                    Living* temp = *neighborhood[i];
-                    *neighborhood[i] = new Grass((*neighborhood[i])->location.x,(*neighborhood[i])->location.y);
+                    Living* temp = *neighborhood[GROUND][i];
+                    *neighborhood[GROUND][i] = new Grass((*neighborhood[GROUND][i])->location.x,(*neighborhood[GROUND][i])->location.y);
                     delete temp;
                 }
             }

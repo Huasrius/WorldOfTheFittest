@@ -27,8 +27,8 @@
 #include <GLFW/glfw3.h>
 
 // settings for disaplay
-const size_t SCR_WIDTH = BOARD_LENGTH_X*15;
-const size_t SCR_HEIGHT = BOARD_LENGTH_Y*15;
+const size_t SCR_WIDTH = BOARD_LENGTH_X*12;
+const size_t SCR_HEIGHT = BOARD_LENGTH_Y*12;
 const size_t SCR_SQUARES_X = BOARD_LENGTH_X;
 const size_t SCR_SQUARES_Y = BOARD_LENGTH_Y;
 const size_t SCR_SQUARES = SCR_SQUARES_X * SCR_SQUARES_Y;

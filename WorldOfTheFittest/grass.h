@@ -38,7 +38,7 @@ public:
     Grass(int x, int y);
     Role who();
     unsigned growLevel;
-    void action(Living** neighborhood[NEIGHBORHOOD_SIZE]);
+    void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
 };
 
 #endif // GRASS_H

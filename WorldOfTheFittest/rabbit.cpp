@@ -52,16 +52,16 @@ Role Rabbit::who(){
  * @brief Rabbit::action can destroy the neighborhood or set a new rabbit in Neigborhood
  * @param an Array neighborhood of size NEIGHBORHOOD_SIZE with living double Pointer
  */
-void Rabbit::action(Living **neighborhood[]){
+void Rabbit::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
     repletionLevel--;
 
     if(isPregnant) {
         for (size_t i = 0; i < NEIGHBORHOOD_SIZE; i++ ) {
-            if(*neighborhood[i] != nullptr) {
-                if((*neighborhood[i])->who() == EMPTY || (*neighborhood[i])->who() == GRASS) {
+            if(*neighborhood[ABOVE][i] != nullptr) {
+                if((*neighborhood[ABOVE][i])->who() == EMPTY) {
                     //if(rand()%2 == 0){
-                    Living* temp = *neighborhood[i];
-                    *neighborhood[i] = new Rabbit((*neighborhood[i])->location.x,(*neighborhood[i])->location.y,0);
+                    Living* temp = *neighborhood[ABOVE][i];
+                    *neighborhood[ABOVE][i] = new Rabbit((*neighborhood[ABOVE][i])->location.x,(*neighborhood[ABOVE][i])->location.y,0);
                     delete temp;
                     //}
                 }
@@ -71,23 +71,23 @@ void Rabbit::action(Living **neighborhood[]){
     }
 
     for (size_t i = 0; i < NEIGHBORHOOD_SIZE; i++ ){
-        if(*neighborhood[i] != nullptr) {
+        if(*neighborhood[GROUND][i] != nullptr) {
             // If it has grass in the neigborhood and the rabbit is still hungry, he eats grass
             // The Grass growLevel is decremented
-            if((*neighborhood[i])->who() == GRASS && repletionLevel <= RABBIT_MAX_REPLETION_LEVEL) {
-                static_cast<Grass*>(*neighborhood[i])->growLevel--;
+            if((*neighborhood[GROUND][i])->who() == GRASS && repletionLevel <= RABBIT_MAX_REPLETION_LEVEL) {
+                static_cast<Grass*>(*neighborhood[GROUND][i])->growLevel--;
                 repletionLevel++;
                 // If the growLevel is 0 the grass is replaced by an empty class
-                if(static_cast<Grass*>(*neighborhood[i])->growLevel == 0) {
-                    Living* temp = *neighborhood[i];
-                    *neighborhood[i]= new Empty((*neighborhood[i])->location.x,(*neighborhood[i])->location.y);
+                if(static_cast<Grass*>(*neighborhood[GROUND][i])->growLevel == 0) {
+                    Living* temp = *neighborhood[GROUND][i];
+                    *neighborhood[GROUND][i]= new Empty((*neighborhood[GROUND][i])->location.x,(*neighborhood[GROUND][i])->location.y);
                     delete temp;
                 }
             }
             // If the rabbit genders is female and it reached sexual maturity and it has Male rabbits with sexual maturity
             // in the neigborhood, the rabbit gets pregnant.
-            if((*neighborhood[i])->who() == RABBIT && static_cast<Animal*>(*neighborhood[i])->getGender() == MALE
-                    && gender == FEMALE && static_cast<Animal*>(*neighborhood[i])->getAge() >= RABBIT_SEXUAL_MATURITY
+            if((*neighborhood[ABOVE][i])->who() == RABBIT && static_cast<Animal*>(*neighborhood[ABOVE][i])->getGender() == MALE
+                    && gender == FEMALE && static_cast<Animal*>(*neighborhood[ABOVE][i])->getAge() >= RABBIT_SEXUAL_MATURITY
                     && age >= RABBIT_SEXUAL_MATURITY) {
                 isPregnant = true;
             }

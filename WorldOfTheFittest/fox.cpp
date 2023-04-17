@@ -51,17 +51,17 @@ Role Fox::who(){
  * @brief Fox::action can destroy the neighborhood or set a new fox in neigborhood
  * @param an Array neighborhood of size NEIGHBORHOOD_SIZE with living double Pointer
  */
-void Fox::action(Living** neighborhood[NEIGHBORHOOD_SIZE]) {
+void Fox::action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]) {
     repletionLevel--;
 
     // If the Fox is pregnant it giving birth to new Foxes
     // The new Foxes replace an empty or a grass Class
     if(isPregnant) {
         for (size_t i = 0; i < NEIGHBORHOOD_SIZE; i++ ) {
-            if(*neighborhood[i] != nullptr) {
-                if((*neighborhood[i])->who() == EMPTY || (*neighborhood[i])->who() == GRASS) {
-                    Living* temp = *neighborhood[i];
-                    *neighborhood[i] = new Fox((*neighborhood[i])->location.x,(*neighborhood[i])->location.y,0);
+            if(*neighborhood[ABOVE][i] != nullptr) {
+                if((*neighborhood[ABOVE][i])->who() == EMPTY) {
+                    Living* temp = *neighborhood[ABOVE][i];
+                    *neighborhood[ABOVE][i] = new Fox((*neighborhood[ABOVE][i])->location.x,(*neighborhood[ABOVE][i])->location.y,0);
                     delete temp;
                 }
             }
@@ -70,19 +70,19 @@ void Fox::action(Living** neighborhood[NEIGHBORHOOD_SIZE]) {
     }
 
     for (size_t i = 0; i < NEIGHBORHOOD_SIZE; i++ ){
-        if(*neighborhood[i] != nullptr) {
+        if(*neighborhood[ABOVE][i] != nullptr) {
             // If it has rabbits in the neigborhood and the fox is still hungry, he eats rabbits
             // The rabbits place is replaced by an empty class
-            if((*neighborhood[i])->who() == RABBIT && repletionLevel <= FOX_MAX_REPLETION_LEVEL) {
-                Living *temp = *neighborhood[i];
-                *neighborhood[i]= new Empty((*neighborhood[i])->location.x,(*neighborhood[i])->location.y);
+            if((*neighborhood[ABOVE][i])->who() == RABBIT && repletionLevel <= FOX_MAX_REPLETION_LEVEL) {
+                Living *temp = *neighborhood[ABOVE][i];
+                *neighborhood[ABOVE][i]= new Empty((*neighborhood[ABOVE][i])->location.x,(*neighborhood[ABOVE][i])->location.y);
                 delete temp;
                 repletionLevel+= 2;
             }
             // If the fox genders is female and it reached sexual maturity and it has Male foxes with sexual maturity
             // in the neigborhood, the fox gets pregnant.
-            if((*neighborhood[i])->who() == FOX && static_cast<Animal*>(*neighborhood[i])->getGender() == MALE
-                    && gender == FEMALE && static_cast<Animal*>(*neighborhood[i])->getAge() >= FOX_SEXUAL_MATURITY
+            if((*neighborhood[ABOVE][i])->who() == FOX && static_cast<Animal*>(*neighborhood[ABOVE][i])->getGender() == MALE
+                    && gender == FEMALE && static_cast<Animal*>(*neighborhood[ABOVE][i])->getAge() >= FOX_SEXUAL_MATURITY
                     && age >= FOX_SEXUAL_MATURITY) {
                 isPregnant = true;
             }

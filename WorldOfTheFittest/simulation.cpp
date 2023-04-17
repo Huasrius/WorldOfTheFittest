@@ -34,19 +34,23 @@ Simulation::Simulation() {
     srand(static_cast<unsigned>(clock()));
 
     //set the limit for WorldPlayground
-    for (unsigned ix = 0; ix < BOARD_LENGTH_X + 2; ix++){
-        worldPlayground[ix][0] = nullptr;
-        worldPlayground[ix][BOARD_LENGTH_X + 1] = nullptr;
-    }
-    for (unsigned iy = 1; iy < BOARD_LENGTH_Y + 1; iy++){
-        worldPlayground[0][iy] = nullptr;
-        worldPlayground[BOARD_LENGTH_Y + 1][iy] = nullptr;
-    }
-    //fill the whole WorldPlayground with the Class Empty
-    for (unsigned ix = 1; ix <= BOARD_LENGTH_X; ix++)
-        for (unsigned iy = 1; iy <= BOARD_LENGTH_Y; iy++){
-            worldPlayground[ix][iy] = new Empty(ix,iy);
+    for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
+        for (unsigned ix = 0; ix < BOARD_LENGTH_X + 2; ix++) {
+            worldPlayground[boardLevel][ix][0] = nullptr;
+            worldPlayground[boardLevel][ix][BOARD_LENGTH_X + 1] = nullptr;
         }
+        for (unsigned iy = 1; iy < BOARD_LENGTH_Y + 1; iy++) {
+            worldPlayground[boardLevel][0][iy] = nullptr;
+            worldPlayground[boardLevel][BOARD_LENGTH_Y + 1][iy] = nullptr;
+
+        }
+        //fill the whole WorldPlayground with the Class Empty
+        for (unsigned ix = 1; ix <= BOARD_LENGTH_X; ix++) {
+            for (unsigned iy = 1; iy <= BOARD_LENGTH_Y; iy++) {
+                worldPlayground[boardLevel][ix][iy] = new Empty(ix, iy);
+            }
+        }
+    }
     //fill randomly the WorldPlayground with the CLass Grass times GRASS_START_POPULATION
     setStart(GRASS);
 
@@ -56,6 +60,7 @@ Simulation::Simulation() {
     //fill randomly the WorldPlayground with the CLass FOX times FOX_START_POPULATION
     setStart(FOX);
 }
+
 
 /**
  * @brief Simulation::oneCycle simulate one cycle of the simulation and does action for all roles except empty.
@@ -68,8 +73,8 @@ void Simulation::oneCycle(void){
         (*vec.fox[i])->action(neighbor);
         //  if the role dies, because of starvation or senility the place is replaced by an empty class
         if(static_cast<Animal*>(*vec.fox[i])->getAge() == FOX_LIVESPAN || static_cast<Animal*>(*vec.fox[i])->getRepletionLevel() == 0) {
-            Living* temp = worldPlayground[(*vec.fox[i])->location.x][(*vec.fox[i])->location.y];
-            worldPlayground[(*vec.fox[i])->location.x][(*vec.fox[i])->location.y] = new Empty((*vec.fox[i])->location.x,(*vec.fox[i])->location.y);
+            Living* temp = worldPlayground[ABOVE][(*vec.fox[i])->location.x][(*vec.fox[i])->location.y];
+            worldPlayground[ABOVE][(*vec.fox[i])->location.x][(*vec.fox[i])->location.y] = new Empty((*vec.fox[i])->location.x,(*vec.fox[i])->location.y);
             delete temp;
         }
     }
@@ -82,8 +87,8 @@ void Simulation::oneCycle(void){
             (*vec.rabbit[i])->action(neighbor);
             //  if the role dies, because of starvation or senility the place is replaced by an empty class
             if(static_cast<Animal*>(*vec.rabbit[i])->getAge() == RABBIT_LIFESPAN || static_cast<Animal*>(*vec.rabbit[i])->getRepletionLevel() == 0) {
-                Living* temp = worldPlayground[(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y];
-                worldPlayground[(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y] = new Empty((*vec.rabbit[i])->location.x,(*vec.rabbit[i])->location.y);
+                Living* temp = worldPlayground[ABOVE][(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y];
+                worldPlayground[ABOVE][(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y] = new Empty((*vec.rabbit[i])->location.x,(*vec.rabbit[i])->location.y);
                 delete temp;
             }
         }
@@ -107,14 +112,17 @@ void Simulation::oneCycle(void){
  * @param y
  */
 void Simulation::setNeighbors(unsigned x, unsigned y){
-    neighbor[0] = &worldPlayground[x-1][y-1];
-    neighbor[1] = &worldPlayground[x][y-1];
-    neighbor[2] = &worldPlayground[x+1][y-1];
-    neighbor[3] = &worldPlayground[x+1][y];
-    neighbor[4] = &worldPlayground[x+1][y+1];
-    neighbor[5] = &worldPlayground[x][y+1];
-    neighbor[6] = &worldPlayground[x-1][y+1];
-    neighbor[7] = &worldPlayground[x-1][y];
+
+    for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
+        neighbor[boardLevel][0] = &worldPlayground[boardLevel][x - 1][y - 1];
+        neighbor[boardLevel][1] = &worldPlayground[boardLevel][x][y - 1];
+        neighbor[boardLevel][2] = &worldPlayground[boardLevel][x + 1][y - 1];
+        neighbor[boardLevel][3] = &worldPlayground[boardLevel][x + 1][y];
+        neighbor[boardLevel][4] = &worldPlayground[boardLevel][x + 1][y + 1];
+        neighbor[boardLevel][5] = &worldPlayground[boardLevel][x][y + 1];
+        neighbor[boardLevel][6] = &worldPlayground[boardLevel][x - 1][y + 1];
+        neighbor[boardLevel][7] = &worldPlayground[boardLevel][x - 1][y];
+    }
 }
 
 /**
@@ -125,10 +133,12 @@ void Simulation::setNeighbors(unsigned x, unsigned y){
 void Simulation::setStart(Role role){
     unsigned x ,y;
     size_t startPopulation = 0;
+    unsigned boardLevel = ABOVE;
 
     switch(role){
     case GRASS:
         startPopulation = GRASS_START_POPULATION;
+        boardLevel = GROUND;
         break;
     case RABBIT :
         startPopulation = RABBIT_START_POPULATION;
@@ -145,20 +155,20 @@ void Simulation::setStart(Role role){
         do{
             x = 1 + rand()%BOARD_LENGTH_X;
             y = 1 + rand()%BOARD_LENGTH_Y;
-        }while(EMPTY != worldPlayground[x][y]->who());
+        }while(EMPTY != worldPlayground[boardLevel][x][y]->who());
 
         switch(role){
         case GRASS:
-            worldPlayground[x][y] = new Grass(x,y);
-            vec.grass.push_back(&worldPlayground[x][y]);
+            worldPlayground[GROUND][x][y] = new Grass(x,y);
+            vec.grass.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         case RABBIT :
-            worldPlayground[x][y] = new Rabbit(x,y,rand()%RABBIT_LIFESPAN);
-            vec.rabbit.push_back(&worldPlayground[x][y]);
+            worldPlayground[ABOVE][x][y] = new Rabbit(x,y,rand()%RABBIT_LIFESPAN);
+            vec.rabbit.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         case FOX :
-            worldPlayground[x][y] = new Fox(x,y,rand()%RABBIT_LIFESPAN);
-            vec.fox.push_back(&worldPlayground[x][y]);
+            worldPlayground[ABOVE][x][y] = new Fox(x,y,rand()%RABBIT_LIFESPAN);
+            vec.fox.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         default :
             break;
@@ -177,23 +187,24 @@ void Simulation::fillVectors(void){
     vec.fox.erase(vec.fox.begin(),vec.fox.end());
     vec.rabbit.erase(vec.rabbit.begin(),vec.rabbit.end());
     vec.grass.erase(vec.grass.begin(),vec.grass.end());
-
-    for (unsigned x = 1; x <= BOARD_LENGTH_X; x++)
-        for (unsigned y = 1; y <= BOARD_LENGTH_Y; y++){
-            switch(worldPlayground[x][y]->who()){
-            case GRASS:
-                vec.grass.push_back(&worldPlayground[x][y]);
-                break;
-            case RABBIT :
-                vec.rabbit.push_back(&worldPlayground[x][y]);
-                break;
-            case FOX :
-                vec.fox.push_back(&worldPlayground[x][y]);
-                break;
-            default :
-                break;
+    for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
+        for (unsigned x = 1; x <= BOARD_LENGTH_X; x++)
+            for (unsigned y = 1; y <= BOARD_LENGTH_Y; y++) {
+                switch (worldPlayground[boardLevel][x][y]->who()) {
+                case GRASS:
+                    vec.grass.push_back(&worldPlayground[boardLevel][x][y]);
+                    break;
+                case RABBIT:
+                    vec.rabbit.push_back(&worldPlayground[boardLevel][x][y]);
+                    break;
+                case FOX:
+                    vec.fox.push_back(&worldPlayground[boardLevel][x][y]);
+                    break;
+                default:
+                    break;
+                }
             }
-        }
+    }
     statics.numberOfFoxes = vec.fox.size();
     statics.numberOfRabbits = vec.rabbit.size();
     statics.numberOfGrass = vec.grass.size();

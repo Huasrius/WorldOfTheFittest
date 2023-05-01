@@ -133,10 +133,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Documents\libraries\OpenGraphicsLibrary\src\glad.c" />
     <ClCompile Include="animal.cpp" />
     <ClCompile Include="empty.cpp" />
     <ClCompile Include="fox.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="grass.cpp" />
     <ClCompile Include="living.cpp" />
     <ClCompile Include="main.cpp" />

@@ -39,10 +39,10 @@
     <ClCompile Include="rabbit.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Documents\libraries\OpenGraphicsLibrary\src\glad.c">
+    <ClCompile Include="OpenGL.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGL.cpp">
+    <ClCompile Include="glad.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

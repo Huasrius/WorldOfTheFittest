@@ -1,11 +1,8 @@
 /*H***********************************************************
-* FILENAME :  main.cpp        REF : BTF3231
+* FILENAME :  main.cpp
 *
 * PROJECT :
 *  World of the fittest
-*
-* COMPANY :
-*   Bern University of Applied Sciences
 *
 * DESCRIPTION :
 *   The mini-project is about a simulator of the interaction between predators and pray written in C++.
@@ -14,19 +11,17 @@
 *   there is a builder which holds all together and a visualization of the world of living thing.
 *
 * DATE:
-*    06.2018
+*    07.05.2023
 *
 * NOTES :
-*
-*   Copyright Valerio MOLLET, Tobias HUSY 2018.  All rights reserved.
+*   Copyright Tobias HUSY 2023.  All rights reserved.
 *
 * AUTHOR:
-*    Valerio MOLLET <valerio.mollet@students.bfh.ch>
-*    Tobias HUSY <tobias.husy@students.bfh.ch>
+*    Tobias HUSY <tobi-husy@hotmail.com>
 *
 *H*/
 #include "simulation.h"
-#include "OpenGL.h"
+#include "openGL.h"
 
 const char* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"

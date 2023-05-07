@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tobi-\Documents\libraries\OpenGraphicsLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\tobi-\source\repos\C++\WorldOfTheFittest\WorldOfTheFittest\inc;C:\Users\tobi-\Documents\libraries\OpenGraphicsLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\tobi-\Documents\libraries\OpenGraphicsLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\tobi-\source\repos\C++\WorldOfTheFittest\WorldOfTheFittest\inc;C:\Users\tobi-\Documents\libraries\OpenGraphicsLibrary\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,27 +133,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="animal.cpp" />
-    <ClCompile Include="empty.cpp" />
-    <ClCompile Include="fox.cpp" />
-    <ClCompile Include="grass.cpp" />
-    <ClCompile Include="living.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="OpenGL.cpp" />
-    <ClCompile Include="rabbit.cpp" />
-    <ClCompile Include="simulation.cpp" />
+    <ClCompile Include="src\animal.cpp" />
+    <ClCompile Include="src\empty.cpp" />
+    <ClCompile Include="src\fox.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\grass.cpp" />
+    <ClCompile Include="src\living.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\openGL.cpp" />
+    <ClCompile Include="src\rabbit.cpp" />
+    <ClCompile Include="src\simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animal.h" />
-    <ClInclude Include="empty.h" />
-    <ClInclude Include="fox.h" />
-    <ClInclude Include="grass.h" />
-    <ClInclude Include="living.h" />
-    <ClInclude Include="OpenGL.h" />
-    <ClInclude Include="properties.h" />
-    <ClInclude Include="rabbit.h" />
-    <ClInclude Include="simulation.h" />
+    <ClInclude Include="inc\animal.h" />
+    <ClInclude Include="inc\empty.h" />
+    <ClInclude Include="inc\fox.h" />
+    <ClInclude Include="inc\grass.h" />
+    <ClInclude Include="inc\living.h" />
+    <ClInclude Include="inc\openGL.h" />
+    <ClInclude Include="inc\properties.h" />
+    <ClInclude Include="inc\rabbit.h" />
+    <ClInclude Include="inc\simulation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

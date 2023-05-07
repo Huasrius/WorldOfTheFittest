@@ -1,25 +1,20 @@
 /*H***********************************************************
-* FILENAME :  properties.h        REF : BTF3231
+* FILENAME :  properties.h
 *
 * PROJECT :
 *  World of the fittest
-*
-* COMPANY :
-*   Bern University of Applied Sciences
 *
 * DESCRIPTION :
 *   This header contains all constant for adjust the program.
 *
 * DATE:
-*    06.2018
+*    07.05.2023
 *
 * NOTES :
-*
-*   Copyright Valerio MOLLET, Tobias HUSY 2018.  All rights reserved.
+*   Copyright Tobias HUSY 2023.  All rights reserved.
 *
 * AUTHOR:
-*    Valerio MOLLET <valerio.mollet@students.bfh.ch>
-*    Tobias HUSY <tobias.husy@students.bfh.ch>
+*    Tobias HUSY <tobi-husy@hotmail.com>
 *
 *H*/
 

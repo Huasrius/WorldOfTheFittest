@@ -15,63 +15,66 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="simulation.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="animal.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="empty.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="grass.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="fox.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="living.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="rabbit.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="OpenGL.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGL.cpp">
+    <ClCompile Include="src\simulation.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animal.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\empty.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fox.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\grass.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\living.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\openGL.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rabbit.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="simulation.h">
+    <ClInclude Include="inc\living.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="animal.h">
+    <ClInclude Include="inc\openGL.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="empty.h">
+    <ClInclude Include="inc\properties.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="fox.h">
+    <ClInclude Include="inc\rabbit.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="grass.h">
+    <ClInclude Include="inc\simulation.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="living.h">
+    <ClInclude Include="inc\animal.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="properties.h">
+    <ClInclude Include="inc\empty.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="rabbit.h">
+    <ClInclude Include="inc\fox.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGL.h">
+    <ClInclude Include="inc\grass.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

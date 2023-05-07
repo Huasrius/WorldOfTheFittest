@@ -1,26 +1,26 @@
 /*H***********************************************************
-* FILENAME :  OpenGL.h
+* FILENAME :  openGL.cpp
 *
 * PROJECT :
 *  World of the fittest
 *
-*
 * DESCRIPTION :
-*
+*   The .cpp File descripes all functions of the header File
 *
 * DATE:
-*    04.2023
+*    07.05.2023
 *
 * NOTES :
-*
-*   Copyright Tobias HUSY 2022.  All rights reserved.
+*   Copyright Tobias HUSY 2023.  All rights reserved.
 *
 * AUTHOR:
-*    Tobias HUSY <tobias.husy@students.bfh.ch>
+*    Tobias HUSY <tobi-husy@hotmail.com>
 *
 *H*/
 
-#include "OpenGL.h"
+#include "openGL.h"
+
+
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------

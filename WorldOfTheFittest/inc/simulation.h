@@ -42,19 +42,19 @@ public:
     Simulation();
     void oneCycle(void);
     Living* worldPlayground[BOARD_LEVELS][BOARD_LENGTH_X + 2][BOARD_LENGTH_Y + 2];
-private:
-    void fillVectors(void);
-    Living** neighbor[BOARD_LEVELS][NEIGHBORHOOD_SIZE];
-    struct vec_{
+    struct vec_ {
         vector<Living**> grass;
         vector<Living**> rabbit;
         vector<Living**> fox;
     }vec;
-    struct statics_{
+    struct statics_ {
         unsigned numberOfGrass;
         unsigned numberOfRabbits;
         unsigned numberOfFoxes;
     }statics;
+private:
+    void fillVectors(void);
+    Living** neighbor[BOARD_LEVELS][NEIGHBORHOOD_SIZE];
     void setStart(Role role);
     void setNeighbors(unsigned x, unsigned y);
 };

@@ -1,5 +1,5 @@
 /*H***********************************************************
-* FILENAME :  openGL.cpp
+* FILENAME :  windowHandling.cpp
 *
 * PROJECT :
 *  World of the fittest
@@ -18,7 +18,7 @@
 *
 *H*/
 
-#include "openGL.h"
+#include "windowHandling.h"
 
 
 

@@ -26,19 +26,17 @@
  */
 Simulation::Simulation() {
 
+    // set the rand clock? 
     srand(static_cast<unsigned>(clock()));
 
-    //set the limit for WorldPlayground
+    // set the world Playground with an outer layer of Null pointers as a border
     for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
+        // set all the pointers to null cause I'm lazy
         for (unsigned ix = 0; ix < BOARD_LENGTH_X + 2; ix++) {
-            worldPlayground[boardLevel][ix][0] = nullptr;
-            worldPlayground[boardLevel][ix][BOARD_LENGTH_X + 1] = nullptr;
-        }
-        for (unsigned iy = 1; iy < BOARD_LENGTH_Y + 1; iy++) {
-            worldPlayground[boardLevel][0][iy] = nullptr;
-            worldPlayground[boardLevel][BOARD_LENGTH_Y + 1][iy] = nullptr;
-
-        }
+            for (unsigned iy = 0; iy < BOARD_LENGTH_Y + 2; iy++) {
+                worldPlayground[boardLevel][ix][iy] = nullptr;
+            }
+        }       
         //fill the whole WorldPlayground with the Class Empty
         for (unsigned ix = 1; ix <= BOARD_LENGTH_X; ix++) {
             for (unsigned iy = 1; iy <= BOARD_LENGTH_Y; iy++) {
@@ -46,6 +44,7 @@ Simulation::Simulation() {
             }
         }
     }
+
     //fill randomly the WorldPlayground with the CLass Grass times GRASS_START_POPULATION
     setStart(GRASS);
 
@@ -54,6 +53,7 @@ Simulation::Simulation() {
 
     //fill randomly the WorldPlayground with the CLass FOX times FOX_START_POPULATION
     setStart(FOX);
+
 }
 
 

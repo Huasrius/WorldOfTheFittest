@@ -140,8 +140,9 @@
     <ClCompile Include="src\grass.cpp" />
     <ClCompile Include="src\living.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\openGL.cpp" />
+    <ClCompile Include="src\windowHandling.cpp" />
     <ClCompile Include="src\rabbit.cpp" />
+    <ClCompile Include="src\shapeDrawer.cpp" />
     <ClCompile Include="src\simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +151,10 @@
     <ClInclude Include="inc\fox.h" />
     <ClInclude Include="inc\grass.h" />
     <ClInclude Include="inc\living.h" />
-    <ClInclude Include="inc\openGL.h" />
+    <ClInclude Include="inc\windowHandling.h" />
     <ClInclude Include="inc\properties.h" />
     <ClInclude Include="inc\rabbit.h" />
+    <ClInclude Include="inc\shapeDrawer.h" />
     <ClInclude Include="inc\simulation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

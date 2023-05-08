@@ -127,7 +127,7 @@ void Simulation::setNeighbors(unsigned x, unsigned y){
  */
 void Simulation::setStart(Role role){
     unsigned x ,y;
-    size_t startPopulation = 0;
+    unsigned startPopulation = 0;
     unsigned boardLevel = ABOVE;
 
     switch(role){

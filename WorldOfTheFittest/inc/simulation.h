@@ -48,9 +48,9 @@ public:
         vector<Living**> fox;
     }vec;
     struct statics_ {
-        unsigned numberOfGrass;
-        unsigned numberOfRabbits;
-        unsigned numberOfFoxes;
+        size_t numberOfGrass;
+        size_t numberOfRabbits;
+        size_t numberOfFoxes;
     }statics;
 private:
     void fillVectors(void);

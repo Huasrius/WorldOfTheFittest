@@ -65,8 +65,8 @@ void Grass::draw() {
     // Calculate the center of the Grass to the screen range
     double centerX = SCR_LIVING_DELTA_X * location.x - SCR_LIVING_DELTA_X / 2 - SCR_GLFW_RANGE / 2;
     double centerY = SCR_LIVING_DELTA_Y * location.y - SCR_LIVING_DELTA_Y / 2 - SCR_GLFW_RANGE / 2;
-    double radiusX = SCR_LIVING_DELTA_X * 0.4;
-    double radiusY = SCR_LIVING_DELTA_Y * 0.4;
+    double radiusX = SCR_LIVING_DELTA_X * 0.75;
+    double radiusY = SCR_LIVING_DELTA_Y * 0.75;
 
     drawCircle(centerX, centerY, radiusX, radiusY);
 

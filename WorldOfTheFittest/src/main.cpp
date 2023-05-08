@@ -61,7 +61,8 @@ int main()
         processInput(window);
 
         // render
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        // color of the Background
+        glClearColor(0.345f, 0.247f, 0.066f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         for (unsigned i = 0; i < sim.statics.numberOfGrass; i++) {

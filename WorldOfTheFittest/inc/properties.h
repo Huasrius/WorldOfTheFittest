@@ -38,7 +38,7 @@ enum Role {EMPTY, GRASS, RABBIT, FOX, MAX_ROLE};
 enum Level {GROUND, ABOVE};
 
 // Board
-const size_t BOARD_LENGTH_X = 80;
+const size_t BOARD_LENGTH_X = 120;
 const size_t BOARD_LENGTH_Y = 60;
 const size_t BOARD_LEVELS = 2;
 const size_t CYCLE_TIME_MS = 1;

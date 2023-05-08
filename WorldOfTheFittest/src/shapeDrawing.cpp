@@ -20,7 +20,7 @@
 
 #include "shapeDrawing.h"
 
-void drawCircle(float x, float y, float radius)
+void drawCircle(float x, float y, float radiusX, float radiusY)
 {
 
     const float angleIncrement = 2.0f * M_PI / static_cast<float>(CIRCLE_SEGMENTS_NUM);
@@ -33,8 +33,8 @@ void drawCircle(float x, float y, float radius)
     for (int i = 0; i < vertexCount; i++)
     {
         const float angle = angleIncrement * static_cast<float>(i);
-        const float px = x + radius * std::cos(angle);
-        const float py = y + radius * std::sin(angle);
+        const float px = x + radiusX * std::cos(angle);
+        const float py = y + radiusY * std::sin(angle);
 
         vertices[2 * i] = px;
         vertices[2 * i + 1] = py;

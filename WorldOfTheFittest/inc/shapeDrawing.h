@@ -32,6 +32,6 @@
 #include "properties.h"
 
 
-void drawCircle(float x, float y, float radius);
+void drawCircle(float x, float y, float radiusX, float radiusY);
 
 #endif // SHAPEDRAWING_H

@@ -42,9 +42,12 @@ const size_t BOARD_LENGTH_X = 80;
 const size_t BOARD_LENGTH_Y = 60;
 const size_t BOARD_LEVELS = 2;
 const size_t CYCLE_TIME_MS = 1;
+// Display
+const size_t SCR_WIDTH = BOARD_LENGTH_X * 12;
+const size_t SCR_HEIGHT = BOARD_LENGTH_Y * 12;
+const float SCR_GLFW_RANGE = 2.0;
 // Drawing
 const size_t CIRCLE_SEGMENTS_NUM = 500;
-const double M_PI = std::acos(-1);
 // Life
 const size_t DEFAULT_GROW_LEVEL = 2;
 const size_t MAX_GROW_LEVEL = 8;
@@ -61,5 +64,21 @@ const size_t FOX_START_POPULATION = 500;
 const size_t FOX_LIVESPAN = 20;
 const size_t FOX_SEXUAL_MATURITY = 1;
 const size_t FOX_MAX_REPLETION_LEVEL = 6;
+
+// Calculations
+// Board
+ 
+// Display
+const float SCR_LIVING_DELTA_X = SCR_GLFW_RANGE / BOARD_LENGTH_X;
+const float SCR_LIVING_DELTA_Y = SCR_GLFW_RANGE / BOARD_LENGTH_Y;
+// Drawing
+const double M_PI = std::acos(-1);
+// Life
+
+// Gras
+
+// Rabit
+
+// Fox
 
 #endif // PROPERTIES_H

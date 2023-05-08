@@ -62,4 +62,11 @@ void Grass::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
 
 void Grass::draw() {
 
+    // Calculate the center of the Grass to the screen range
+    double centerX = SCR_LIVING_DELTA_X * location.x - SCR_LIVING_DELTA_X / 2 - SCR_GLFW_RANGE / 2;
+    double centerY = SCR_LIVING_DELTA_Y * location.y - SCR_LIVING_DELTA_Y / 2 - SCR_GLFW_RANGE / 2;
+    double radius = SCR_LIVING_DELTA_X * 0.4;
+
+    drawCircle(centerX, centerY, radius);
+
 }

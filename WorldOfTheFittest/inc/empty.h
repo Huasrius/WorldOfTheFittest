@@ -33,6 +33,7 @@ public:
     Empty(int x, int y);
     Role who();
     void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
+    void draw();
 };
 
 #endif // EMPTY_H

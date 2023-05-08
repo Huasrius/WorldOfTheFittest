@@ -59,3 +59,7 @@ void Grass::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
     if (growLevel < MAX_GROW_LEVEL)
         growLevel++;
 }
+
+void Grass::draw() {
+
+}

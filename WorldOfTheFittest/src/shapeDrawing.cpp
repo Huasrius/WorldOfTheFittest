@@ -5,7 +5,7 @@
 *  World of the fittest
 *
 * DESCRIPTION :
-*   The .cpp File descripes all Methodes of the class header File
+*   The .cpp File descripes all functions of the header File
 *
 * DATE:
 *    08.05.2023
@@ -18,28 +18,21 @@
 *
 *H*/
 
-#include "shapeDrawer.h"
+#include "shapeDrawing.h"
 
-/**
- * @brief The constructor does nothing
- */
-shapeDrawer::shapeDrawer()
+void drawCircle(float x, float y, float radius)
 {
 
-}
-
-void shapeDrawer::drawCircle(float x, float y, float radius, int num_segments)
-{
-    const float angle_increment = 2.0f * M_PI / static_cast<float>(num_segments);
-    const int vertex_count = num_segments;
-    GLfloat* vertices = new GLfloat[2 * vertex_count];
+    const float angleIncrement = 2.0f * M_PI / static_cast<float>(CIRCLE_SEGMENTS_NUM);
+    const int vertexCount = CIRCLE_SEGMENTS_NUM;
+    GLfloat* vertices = new GLfloat[2 * vertexCount];
 
     vertices[0] = x;
     vertices[1] = y;
 
-    for (int i = 0; i < vertex_count; i++)
+    for (int i = 0; i < vertexCount; i++)
     {
-        const float angle = angle_increment * static_cast<float>(i);
+        const float angle = angleIncrement * static_cast<float>(i);
         const float px = x + radius * std::cos(angle);
         const float py = y + radius * std::sin(angle);
 
@@ -54,12 +47,12 @@ void shapeDrawer::drawCircle(float x, float y, float radius, int num_segments)
     glBindVertexArray(vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, 2 * vertex_count * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 2 * vertexCount * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, static_cast<GLvoid*>(0));
     glEnableVertexAttribArray(0);
 
-    glDrawArrays(GL_TRIANGLE_FAN, 0, vertex_count);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount);
 
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);

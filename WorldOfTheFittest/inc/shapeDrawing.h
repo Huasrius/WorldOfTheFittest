@@ -5,7 +5,7 @@
 *  World of the fittest
 *
 * DESCRIPTION :
-*   The header File for Class shapeDrawer
+*   The header File for the functions shapeDrawings
 *
 * DATE:
 *    08.05.2023
@@ -17,8 +17,8 @@
 *    Tobias HUSY <tobi-husy@hotmail.com>
 *
 *H*/
-#ifndef SHAPEDRAWER_H
-#define SHAPEDRAWER_H
+#ifndef SHAPEDRAWING_H
+#define SHAPEDRAWING_H
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -29,13 +29,9 @@
 #include <time.h>
 #include <stdlib.h>
 #include <windows.h>
+#include "properties.h"
 
-class shapeDrawer
-{
-public:
-	const double M_PI = std::acos(-1);
-	shapeDrawer();
-	void drawCircle(float x, float y, float radius, int num_segments);
-};
 
-#endif // SHAPEDRAWER_H
+void drawCircle(float x, float y, float radius);
+
+#endif // SHAPEDRAWING_H

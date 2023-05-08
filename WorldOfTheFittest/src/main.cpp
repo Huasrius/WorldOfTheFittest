@@ -22,18 +22,12 @@
 *H*/
 #include "simulation.h"
 #include "windowHandling.h"
-#include "shapeDrawer.h"
-
-
 
 int main()
 {
     unsigned int cycles = 30;
     // Initialise Simulation
     Simulation sim;
-
-    // Initialise shapeDrawer
-    shapeDrawer drawer;
 
     // glfw: initialize and configure
     glfwInit();
@@ -140,7 +134,7 @@ int main()
 
         for (unsigned iGrass = 0; iGrass < sim.statics.numberOfGrass; iGrass++) {
 
-            drawer.drawCircle(0, 0, 0.1, 500);
+            drawCircle(0, 0, 0.1);
         }
 
 

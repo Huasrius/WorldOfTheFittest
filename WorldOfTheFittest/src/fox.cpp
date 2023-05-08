@@ -85,3 +85,8 @@ void Fox::action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]) {
     }
     age++;
 }
+
+
+void Fox::draw() {
+
+}

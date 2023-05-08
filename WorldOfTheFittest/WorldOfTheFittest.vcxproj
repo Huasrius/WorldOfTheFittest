@@ -142,7 +142,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\windowHandling.cpp" />
     <ClCompile Include="src\rabbit.cpp" />
-    <ClCompile Include="src\shapeDrawer.cpp" />
+    <ClCompile Include="src\shapeDrawing.cpp" />
     <ClCompile Include="src\simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +154,7 @@
     <ClInclude Include="inc\windowHandling.h" />
     <ClInclude Include="inc\properties.h" />
     <ClInclude Include="inc\rabbit.h" />
-    <ClInclude Include="inc\shapeDrawer.h" />
+    <ClInclude Include="inc\shapeDrawing.h" />
     <ClInclude Include="inc\simulation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

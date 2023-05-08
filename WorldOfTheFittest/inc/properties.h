@@ -42,6 +42,9 @@ const size_t BOARD_LENGTH_X = 80;
 const size_t BOARD_LENGTH_Y = 60;
 const size_t BOARD_LEVELS = 2;
 const size_t CYCLE_TIME_MS = 1;
+// Drawing
+const size_t CIRCLE_SEGMENTS_NUM = 500;
+const double M_PI = std::acos(-1);
 // Life
 const size_t DEFAULT_GROW_LEVEL = 2;
 const size_t MAX_GROW_LEVEL = 8;

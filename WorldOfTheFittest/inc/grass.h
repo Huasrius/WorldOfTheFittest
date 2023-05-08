@@ -34,6 +34,7 @@ public:
     Role who();
     unsigned growLevel;
     void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
+    void draw();
 };
 
 #endif // GRASS_H

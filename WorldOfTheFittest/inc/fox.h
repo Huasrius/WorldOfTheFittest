@@ -37,6 +37,7 @@ public:
     Fox(int x, int y, int age);
     Role who();
     void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
+    void draw();
 };
 
 #endif // FOX_H

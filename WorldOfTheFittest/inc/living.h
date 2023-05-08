@@ -21,8 +21,9 @@
 #ifndef LIVING_H
 #define LIVING_H
 
-#include "properties.h"
 #include <cstddef>
+#include "properties.h"
+#include "shapeDrawing.h"
 
 /**
  * @brief The Living Class is a base Class for all possible living objects. It contains
@@ -35,6 +36,7 @@ public :
     virtual ~Living() {}
     virtual Role who() = 0;
     virtual void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]) = 0;
+    virtual void draw() = 0;
     struct  {
         unsigned x;
         unsigned y;

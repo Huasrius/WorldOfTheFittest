@@ -91,3 +91,6 @@ void Rabbit::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
     age++;
 }
 
+void Rabbit::draw() {
+
+}

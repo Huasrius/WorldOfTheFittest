@@ -45,7 +45,7 @@
     <ClCompile Include="src\rabbit.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\shapeDrawer.cpp">
+    <ClCompile Include="src\shapeDrawing.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,7 +77,7 @@
     <ClInclude Include="inc\grass.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="inc\shapeDrawer.h">
+    <ClInclude Include="inc\shapeDrawing.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

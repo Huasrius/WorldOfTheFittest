@@ -26,11 +26,12 @@
  * @param x
  * @param y
  */
-Grass::Grass(int x, int y):
+Grass::Grass(int x, int y, Shader* shader):
     growLevel(DEFAULT_GROW_LEVEL)
 {
     location.x = x;
     location.y = y;
+    this->shader = shader;
 }
 
 /**
@@ -52,7 +53,7 @@ void Grass::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
             if((*neighborhood[GROUND][i])->who() == EMPTY){
                 if(rand()%2 == 0){
                     Living* temp = *neighborhood[GROUND][i];
-                    *neighborhood[GROUND][i] = new Grass((*neighborhood[GROUND][i])->location.x,(*neighborhood[GROUND][i])->location.y);
+                    *neighborhood[GROUND][i] = new Grass((*neighborhood[GROUND][i])->location.x,(*neighborhood[GROUND][i])->location.y,shader);
                     delete temp;
                 }
             }
@@ -61,7 +62,9 @@ void Grass::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
 }
 
 void Grass::draw() {
-
+    
+    // Set the color
+    this->shader->setUniform4f("ourColor", 0.0f, 0.4f, 0.0f, 1.0f);
     // Calculate the center of the Grass to the screen range
     double centerX = SCR_LIVING_DELTA_X * location.x - SCR_LIVING_DELTA_X / 2 - SCR_GLFW_RANGE / 2;
     double centerY = SCR_LIVING_DELTA_Y * location.y - SCR_LIVING_DELTA_Y / 2 - SCR_GLFW_RANGE / 2;

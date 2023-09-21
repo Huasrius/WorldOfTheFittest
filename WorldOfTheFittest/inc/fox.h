@@ -34,7 +34,7 @@ class Fox : public Animal
 {
 
 public:
-    Fox(int x, int y, int age);
+    Fox(int x, int y, int age, Shader* shader);
     Role who();
     void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
     void draw();

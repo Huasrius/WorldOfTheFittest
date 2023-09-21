@@ -30,7 +30,7 @@
 class Grass : public Living
 {
 public:
-    Grass(int x, int y);
+    Grass(int x, int y, Shader* shader);
     Role who();
     unsigned growLevel;
     void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);

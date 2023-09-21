@@ -33,7 +33,7 @@
 class Rabbit : public Animal
 {
 public:
-    Rabbit(int x,int y,int age);
+    Rabbit(int x,int y,int age,Shader* shader);
     Role who();
     void action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]);
     void draw();

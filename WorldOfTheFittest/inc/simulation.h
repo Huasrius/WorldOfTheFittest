@@ -39,9 +39,10 @@
 class Simulation
 {
 public:
-    Simulation();
+    Simulation(Shader* shader);
     void oneCycle(void);
     Living* worldPlayground[BOARD_LEVELS][BOARD_LENGTH_X + 2][BOARD_LENGTH_Y + 2];
+    Shader* shader;
     struct vec_ {
         vector<Living**> grass;
         vector<Living**> rabbit;

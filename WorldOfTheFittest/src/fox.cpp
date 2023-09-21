@@ -27,11 +27,12 @@
  * @param y
  * @param age
  */
-Fox::Fox(int x, int y, int age)
+Fox::Fox(int x, int y, int age, Shader* shader)
 {
     location.x = x;
     location.y = y;
     this->age = age;
+    this->shader = shader;
 }
 
 /**
@@ -56,7 +57,7 @@ void Fox::action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]) {
             if(*neighborhood[ABOVE][i] != nullptr) {
                 if((*neighborhood[ABOVE][i])->who() == EMPTY) {
                     Living* temp = *neighborhood[ABOVE][i];
-                    *neighborhood[ABOVE][i] = new Fox((*neighborhood[ABOVE][i])->location.x,(*neighborhood[ABOVE][i])->location.y,0);
+                    *neighborhood[ABOVE][i] = new Fox((*neighborhood[ABOVE][i])->location.x,(*neighborhood[ABOVE][i])->location.y,0, shader);
                     delete temp;
                 }
             }
@@ -88,5 +89,15 @@ void Fox::action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]) {
 
 
 void Fox::draw() {
+
+    // Set the color
+    this->shader->setUniform4f("ourColor", 0.8f, 0.0f, 0.0f, 1.0f);
+    // Calculate the center of the Grass to the screen range
+    double centerX = SCR_LIVING_DELTA_X * location.x - SCR_LIVING_DELTA_X / 2 - SCR_GLFW_RANGE / 2;
+    double centerY = SCR_LIVING_DELTA_Y * location.y - SCR_LIVING_DELTA_Y / 2 - SCR_GLFW_RANGE / 2;
+    double radiusX = SCR_LIVING_DELTA_X * 0.4;
+    double radiusY = SCR_LIVING_DELTA_Y * 0.4;
+
+    drawCircle(centerX, centerY, radiusX, radiusY);
 
 }

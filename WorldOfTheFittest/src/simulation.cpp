@@ -24,11 +24,11 @@
  * @brief The Simulation::Simulation constructor initialize the hole simulation, that means a worldplayground
  *        is filled with each role on randomly location
  */
-Simulation::Simulation() {
+Simulation::Simulation(Shader* shader) {
 
     // set the rand clock? 
     srand(static_cast<unsigned>(clock()));
-
+    this->shader = shader;
     // set the world Playground with an outer layer of Null pointers as a border
     for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
         // set all the pointers to null cause I'm lazy
@@ -154,15 +154,15 @@ void Simulation::setStart(Role role){
 
         switch(role){
         case GRASS:
-            worldPlayground[GROUND][x][y] = new Grass(x,y);
+            worldPlayground[GROUND][x][y] = new Grass(x,y,shader);
             vec.grass.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         case RABBIT :
-            worldPlayground[ABOVE][x][y] = new Rabbit(x,y,rand()%RABBIT_LIFESPAN);
+            worldPlayground[ABOVE][x][y] = new Rabbit(x,y,rand()%RABBIT_LIFESPAN,shader);
             vec.rabbit.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         case FOX :
-            worldPlayground[ABOVE][x][y] = new Fox(x,y,rand()%RABBIT_LIFESPAN);
+            worldPlayground[ABOVE][x][y] = new Fox(x,y,rand()%RABBIT_LIFESPAN,shader);
             vec.fox.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         default :

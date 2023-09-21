@@ -51,9 +51,9 @@ void Grass::action(Living **neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]){
         if(*neighborhood[GROUND][i]!= nullptr)
             // If the neighborhood is empty a new grass grows with a chance of a half
             if((*neighborhood[GROUND][i])->who() == EMPTY){
-                if(rand()%2 == 0){
+                if(rand()%4 == 0){
                     Living* temp = *neighborhood[GROUND][i];
-                    *neighborhood[GROUND][i] = new Grass((*neighborhood[GROUND][i])->location.x,(*neighborhood[GROUND][i])->location.y,shader);
+                    *neighborhood[GROUND][i] = new Grass((*neighborhood[GROUND][i])->location.x, (*neighborhood[GROUND][i])->location.y,shader);
                     delete temp;
                 }
             }

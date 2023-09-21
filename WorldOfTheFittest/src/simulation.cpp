@@ -69,7 +69,7 @@ void Simulation::oneCycle(void){
         //  if the role dies, because of starvation or senility the place is replaced by an empty class
         if(static_cast<Animal*>(*vec.fox[i])->getAge() == FOX_LIFESPAN || static_cast<Animal*>(*vec.fox[i])->getRepletionLevel() == 0) {
             Living* temp = worldPlayground[ABOVE][(*vec.fox[i])->location.x][(*vec.fox[i])->location.y];
-            worldPlayground[ABOVE][(*vec.fox[i])->location.x][(*vec.fox[i])->location.y] = new Empty((*vec.fox[i])->location.x,(*vec.fox[i])->location.y);
+            worldPlayground[ABOVE][(*vec.fox[i])->location.x][(*vec.fox[i])->location.y] = new Empty((*vec.fox[i])->location.x, (*vec.fox[i])->location.y);
             delete temp;
         }
     }
@@ -78,12 +78,12 @@ void Simulation::oneCycle(void){
     for(i = 0; i < statics.numberOfRabbits; i++){
         // in the rabbits vector could be empty classes, beacause a fox has eaten them, so it's necessary to check if it is a rabbit
         if((*vec.rabbit[i])->who() == RABBIT){
-            setNeighbors((*vec.rabbit[i])->location.x,(*vec.rabbit[i])->location.y);
+            setNeighbors((*vec.rabbit[i])->location.x, (*vec.rabbit[i])->location.y);
             (*vec.rabbit[i])->action(neighbor);
             //  if the role dies, because of starvation or senility the place is replaced by an empty class
             if(static_cast<Animal*>(*vec.rabbit[i])->getAge() == RABBIT_LIFESPAN || static_cast<Animal*>(*vec.rabbit[i])->getRepletionLevel() == 0) {
                 Living* temp = worldPlayground[ABOVE][(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y];
-                worldPlayground[ABOVE][(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y] = new Empty((*vec.rabbit[i])->location.x,(*vec.rabbit[i])->location.y);
+                worldPlayground[ABOVE][(*vec.rabbit[i])->location.x][(*vec.rabbit[i])->location.y] = new Empty((*vec.rabbit[i])->location.x, (*vec.rabbit[i])->location.y);
                 delete temp;
             }
         }
@@ -93,7 +93,7 @@ void Simulation::oneCycle(void){
     for(i = 0; i < statics.numberOfGrass; i++){
         // in the grass vector could be empty classes, beacause a rabbit has eaten them, so it's necessary to check if it is a grass
         if((*vec.grass[i])->who() == GRASS){
-            setNeighbors((*vec.grass[i])->location.x,(*vec.grass[i])->location.y);
+            setNeighbors((*vec.grass[i])->location.x, (*vec.grass[i])->location.y);
             (*vec.grass[i])->action(neighbor);
         }
     }
@@ -154,15 +154,15 @@ void Simulation::setStart(Role role){
 
         switch(role){
         case GRASS:
-            worldPlayground[GROUND][x][y] = new Grass(x,y,shader);
+            worldPlayground[GROUND][x][y] = new Grass(x, y, shader);
             vec.grass.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         case RABBIT :
-            worldPlayground[ABOVE][x][y] = new Rabbit(x,y,rand()%RABBIT_LIFESPAN,shader);
+            worldPlayground[ABOVE][x][y] = new Rabbit(x, y, rand() % RABBIT_LIFESPAN, rand() % RABBIT_MAX_REPLETION_LEVEL, shader);
             vec.rabbit.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         case FOX :
-            worldPlayground[ABOVE][x][y] = new Fox(x,y,rand()%FOX_LIFESPAN,shader);
+            worldPlayground[ABOVE][x][y] = new Fox(x, y, rand() % FOX_LIFESPAN, rand() % FOX_MAX_REPLETION_LEVEL, shader);
             vec.fox.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         default :

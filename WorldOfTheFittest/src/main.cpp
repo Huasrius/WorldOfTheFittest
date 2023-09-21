@@ -83,21 +83,6 @@ int main()
         Sleep(CYCLE_TIME_MS);
     }
 
-    //// optional: de-allocate all resources once they've outlived their purpose:
-    //// ------------------------------------------------------------------------
-    //for (unsigned boardLevel = 0; boardLevel < BOARD_LEVELS; boardLevel++) {
-    //    glDeleteVertexArrays(SCR_SQUARES, VAOs[boardLevel]);
-    //    glDeleteBuffers(SCR_SQUARES, VBOs[boardLevel]);
-    //    glDeleteBuffers(SCR_SQUARES, EBOs[boardLevel]);
-    //}
-    //glDeleteProgram(shaderProgramHumus);
-    //glDeleteProgram(shaderProgramGras);
-    //glDeleteProgram(shaderProgramFoxMale);
-    //glDeleteProgram(shaderProgramFoxFemale);
-    //glDeleteProgram(shaderProgramRabbitMale);
-    //glDeleteProgram(shaderProgramRabbitFemale);
-
     // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
     glfwTerminate();
 }

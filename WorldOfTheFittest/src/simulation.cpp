@@ -67,7 +67,7 @@ void Simulation::oneCycle(void){
         setNeighbors((*vec.fox[i])->location.x,(*vec.fox[i])->location.y);
         (*vec.fox[i])->action(neighbor);
         //  if the role dies, because of starvation or senility the place is replaced by an empty class
-        if(static_cast<Animal*>(*vec.fox[i])->getAge() == FOX_LIVESPAN || static_cast<Animal*>(*vec.fox[i])->getRepletionLevel() == 0) {
+        if(static_cast<Animal*>(*vec.fox[i])->getAge() == FOX_LIFESPAN || static_cast<Animal*>(*vec.fox[i])->getRepletionLevel() == 0) {
             Living* temp = worldPlayground[ABOVE][(*vec.fox[i])->location.x][(*vec.fox[i])->location.y];
             worldPlayground[ABOVE][(*vec.fox[i])->location.x][(*vec.fox[i])->location.y] = new Empty((*vec.fox[i])->location.x,(*vec.fox[i])->location.y);
             delete temp;
@@ -162,7 +162,7 @@ void Simulation::setStart(Role role){
             vec.rabbit.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         case FOX :
-            worldPlayground[ABOVE][x][y] = new Fox(x,y,rand()%RABBIT_LIFESPAN,shader);
+            worldPlayground[ABOVE][x][y] = new Fox(x,y,rand()%FOX_LIFESPAN,shader);
             vec.fox.push_back(&worldPlayground[boardLevel][x][y]);
             break;
         default :

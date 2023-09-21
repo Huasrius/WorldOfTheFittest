@@ -140,6 +140,7 @@
     <ClCompile Include="src\grass.cpp" />
     <ClCompile Include="src\living.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\windowHandling.cpp" />
     <ClCompile Include="src\rabbit.cpp" />
     <ClCompile Include="src\shapeDrawing.cpp" />
@@ -151,11 +152,16 @@
     <ClInclude Include="inc\fox.h" />
     <ClInclude Include="inc\grass.h" />
     <ClInclude Include="inc\living.h" />
+    <ClInclude Include="inc\shader.h" />
     <ClInclude Include="inc\windowHandling.h" />
     <ClInclude Include="inc\properties.h" />
     <ClInclude Include="inc\rabbit.h" />
     <ClInclude Include="inc\shapeDrawing.h" />
     <ClInclude Include="inc\simulation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\fragmentShader.glsl" />
+    <None Include="resources\shaders\vertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -25,9 +25,6 @@
 
 int main()
 {
-    unsigned int cycles = 30;
-    // Initialise Simulation
-    Simulation sim;
 
     // glfw: initialize and configure
     glfwInit();
@@ -52,22 +49,31 @@ int main()
         cout << "Failed to initialize GLAD" << endl;
     }
 
-    // uncomment this call to draw in wireframe polygons.
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    // render loop
+    // Create Shader Object
+    Shader shader("resources/shaders/vertexShader.glsl", "resources/shaders/fragmentShader.glsl");
+    shader.use();
+
+    // Initialise Simulation
+    Simulation sim(&shader);
+
     while (!glfwWindowShouldClose(window))
     {
         // input
         processInput(window);
-
         // render
         // color of the Background
         glClearColor(0.345f, 0.247f, 0.066f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        //shader.setUniform4f("ourColor", 0.0f, 0.0f, 1.0f, 1.0f);
         for (unsigned i = 0; i < sim.statics.numberOfGrass; i++) {
             (*sim.vec.grass[i])->draw();
-
+        }
+        for (unsigned i = 0; i < sim.statics.numberOfFoxes; i++) {
+            (*sim.vec.fox[i])->draw();
+        }
+        for (unsigned i = 0; i < sim.statics.numberOfRabbits; i++) {
+            (*sim.vec.rabbit[i])->draw();
         }
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

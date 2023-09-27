@@ -98,13 +98,13 @@ void Rabbit::draw() {
     // Set the color
     this->shader->setUniform4f("ourColor", 0.0f, 0.0f, 0.8f, 1.0f);
     // Calculate the center of the Rabbit to the screen range
-    double centerX = SCR_LIVING_DELTA_X * location.x - SCR_LIVING_DELTA_X / 2 - SCR_GLFW_RANGE / 2;
-    double centerY = SCR_LIVING_DELTA_Y * location.y - SCR_LIVING_DELTA_Y / 2 - SCR_GLFW_RANGE / 2;
+    float centerX = SCR_LIVING_DELTA_X * location.x - SCR_LIVING_DELTA_X / 2 - SCR_GLFW_RANGE / 2;
+    float centerY = SCR_LIVING_DELTA_Y * location.y - SCR_LIVING_DELTA_Y / 2 - SCR_GLFW_RANGE / 2;
     // Calculate a random offset for a more livly design
-    centerX += (rand() / (RAND_MAX + 1.) - 0.5) * SCR_LIVING_DELTA_X * SCR_LIVING_OFFSET_FACTOR;
-    centerY += (rand() / (RAND_MAX + 1.) - 0.5) * SCR_LIVING_DELTA_Y * SCR_LIVING_OFFSET_FACTOR;
-    double radiusX = SCR_LIVING_DELTA_X * 0.4;
-    double radiusY = SCR_LIVING_DELTA_Y * 0.4;
+    centerX += (static_cast<float>(rand()) / (RAND_MAX + 1.0f) - 0.5f) * SCR_LIVING_DELTA_X * SCR_LIVING_OFFSET_FACTOR;
+    centerY += (static_cast<float>(rand()) / (RAND_MAX + 1.0f) - 0.5f) * SCR_LIVING_DELTA_Y * SCR_LIVING_OFFSET_FACTOR;
+    float radiusX = SCR_LIVING_DELTA_X * 0.4f;
+    float radiusY = SCR_LIVING_DELTA_Y * 0.4f;
 
     drawCircle(centerX, centerY, radiusX, radiusY);
 

@@ -43,8 +43,8 @@ const size_t BOARD_LENGTH_Y = 60;
 const size_t BOARD_LEVELS = 2;
 const size_t CYCLE_TIME_MS = 1;
 // Display
-const float SCR_GLFW_RANGE = 2.0;
-const float SCR_LIVING_OFFSET_FACTOR = 0.3; //for a not uniform display of the coordinates
+const float SCR_GLFW_RANGE = 2.0f;
+const float SCR_LIVING_OFFSET_FACTOR = 0.3f; //for a not uniform display of the coordinates
 // Drawing
 const size_t CIRCLE_SEGMENTS_NUM = 20;
 // Life
@@ -75,7 +75,7 @@ const size_t SCR_HEIGHT = BOARD_LENGTH_Y * 12;
 const float SCR_LIVING_DELTA_X = SCR_GLFW_RANGE / BOARD_LENGTH_X;
 const float SCR_LIVING_DELTA_Y = SCR_GLFW_RANGE / BOARD_LENGTH_Y;
 // Drawing
-const double M_PI = std::acos(-1);
+const float M_PI = static_cast<float>(std::acos(-1));
 // Life
 
 // Gras

@@ -92,7 +92,12 @@ void Fox::action(Living** neighborhood[BOARD_LEVELS][NEIGHBORHOOD_SIZE]) {
 void Fox::draw() {
 
     // Set the color
-    this->shader->setUniform4f("ourColor", 0.8f, 0.0f, 0.0f, 1.0f);
+    if (gender == FEMALE) {
+        this->shader->setUniform4f("ourColor", 0.8f, 0.0f, 0.3f, 1.0f);
+    }
+    else {
+        this->shader->setUniform4f("ourColor", 0.8f, 0.0f, 0.0f, 1.0f);
+    }
     // Calculate the center of the Fox to the screen range
     float centerX = SCR_LIVING_DELTA_X * location.x - SCR_LIVING_DELTA_X / 2 - SCR_GLFW_RANGE / 2;
     float centerY = SCR_LIVING_DELTA_Y * location.y - SCR_LIVING_DELTA_Y / 2 - SCR_GLFW_RANGE / 2;

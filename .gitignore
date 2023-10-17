@@ -1,4 +1,5 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
-x64*
+WorldOfTheFittest/x64*
+x64/Debug*
 .vs*

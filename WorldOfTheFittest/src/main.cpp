@@ -50,7 +50,7 @@ int main()
     }
 
     // Create Shader Object
-    Shader shader("resources/shaders/vertexShader.glsl", "resources/shaders/fragmentShader.glsl");
+    Shader shader("vertexShader.glsl", "fragmentShader.glsl");
     shader.use();
 
     // Initialise Simulation
